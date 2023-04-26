@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-family: fantasy;
+    font-weight: 1;
+    font-size: 50px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+header {
+    border-top: 5px black solid;
+    font-weight: lighter;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    margin-top: 10px;
+}
+
+.header-ul {
+    justify-content: space-between;
+    list-style: none;
+    display: flex;
+}
+nav li {
+    margin: 0 1rem
+}
+
+footer {
+    border-top: 5px black solid;
+    bottom: 0;
+    text-align: center;
+}
+  
+footer p {
+    margin: 0;
+}
+main{
+    display: grid;
+    grid-template-areas: '1 2';
+    max-width: 500px;
+}
+.item-img{
+    max-width: 300px;
+}
+section{
+    display: grid;
+
+}
+p{
+    margin: 20px;
+}
+.flex-center{
+    display: flex;
+    justify-content: center;
+}
+
+
+
