@@ -2,13 +2,15 @@ from database import db #this might need to come from a different script?
 
 order_product = db.Table("order_product",
                           db.Column("order_id", db.Integer, db.ForeignKey("order.id")),
-                          db.Column("product_id", db.Integer, db.ForeignKey("product.id"))
+                          db.Column("product_id", db.Integer, db.ForeignKey("product.id")),
+                          db.Column("product_quantity", db.Integer, nullable=False)
                           )
 
 class UserAccount(db.Model):
-    user_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     email = db.Column(db.String)
+    orders = db.relationship("Order", backref="user_account")
 
     def to_json(self):
         return {
@@ -19,7 +21,8 @@ class UserAccount(db.Model):
 
 class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.ForeignKey("useraccount.id"), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user_account.id"))
+
     products = db.relationship("Product", secondary=order_product, backref="orders")
 
     def to_json(self):
@@ -37,7 +40,7 @@ class Order(db.Model):
         }
 
 class Product(db.Model):
-    product_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     price = db.Column(db.Float)
     quantity = db.Column(db.Integer)
