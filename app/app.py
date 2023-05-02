@@ -11,11 +11,11 @@ app.instance_path = Path(".").resolve()
 
 @app.route("/")
 def home() -> str:
-    return render_template("web/index.html")
+    return render_template("index.html")
 
 @app.route("/login")
 def login() -> str:
-    return render_template("web/login.html")
+    return render_template("login.html")
 
 
 if __name__ == "__main__":
