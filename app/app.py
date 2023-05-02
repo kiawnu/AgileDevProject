@@ -13,6 +13,10 @@ app.instance_path = Path(".").resolve()
 def home() -> str:
     return render_template("web/index.html")
 
+@app.route("/login")
+def login() -> str:
+    return render_template("web/login.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
