@@ -17,6 +17,10 @@ def home() -> str:
 def login() -> str:
     return render_template("login.html")
 
+@app.route("/info")
+def info() -> str:
+    return render_template("infoFront.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
