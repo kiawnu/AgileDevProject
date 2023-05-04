@@ -1,0 +1,147 @@
+html{
+    height: 100%;
+}
+h1{
+    font-family:  'Work Sans', sans-serif;
+    font-size: 2em;
+    text-align: center;
+}
+body{
+    background-color: #ffecd6;
+    margin: 0px;
+    display: grid;
+    height: 100%;
+    color:#5394A0;
+}
+main{
+    margin: 10px;
+    display: grid;
+}
+nav > a{
+    margin: 5px;
+    font-weight: bold;
+}
+aside{
+    background-color: #F9F3EC;
+}
+.notes-taken{
+    list-style: square;
+    font-family:  'Work Sans', sans-serif;
+    font-weight: bold;
+}
+nav{
+    font-family:  'Work Sans', sans-serif;
+    text-align: right;
+}
+section{
+    display: grid;
+    align-content: space-between;
+}
+.top-buttons{
+    display: grid;
+    margin: 10px 0px 10px 0px;
+    grid-template-areas: '1 2';
+}
+.buttonBase{
+    border-radius: 10px;
+    border: 0px;
+    line-height: 3;
+    max-width: fit-content;
+    font-family: 'Work Sans', sans-serif;
+    color: white;
+    padding: 0px 10px 0px 10px;
+}
+.button_new_note{
+    background-color: #5394A0;
+
+}
+.button_dark_theme{
+    background-color: #6F6A87;
+    justify-self: end;
+}
+
+.bot-buttons{
+    display: grid;
+    margin: 10px 0px 10px 0px;
+    grid-template-columns: 1fr;
+    grid-template-areas: '1 2';
+    gap: 15px;
+}
+.button_save{
+    background-color: #5394A0;
+    justify-self: end;
+}
+.button_cancel{
+    background-color: #D9827C;
+}
+a{
+    cursor: pointer;
+}
+
+button:link, button:hover, button:visited{
+    text-decoration: none;
+    background-color: #5394a083;
+}
+article{
+    height: 100%;
+}
+textarea{
+    width: 100%;
+    box-sizing:border-box;
+    background-color: #F9F3EC;
+    padding: 10px;
+    height: 100%;
+    border: none;
+    resize: none;
+    color: rgb(99, 98, 98);
+}
+textarea:focus{
+    outline: none;
+    border: 3px solid #5394A0;
+    border-radius: 5px;
+}
+footer{
+    text-align: center;
+}
+h2{
+    font-family:  'Work Sans', sans-serif;
+}
+img{
+    width: 50px;
+}
+.bodydark{
+    background-color: #282d2e;
+    color: #ffffff;
+}
+.asidedark{
+    background-color: #3a4041;
+}
+.lighttext{
+    color: #ffffff;
+}
+.buttonDB{
+    background-color: #1b2697;
+}
+.buttonDP{
+    background-color: #691fbe;
+}
+.buttonDR{
+    background-color: #7b241e;
+}
+.textareaDM{
+    background-color: #161616;
+    color: #ffffff;
+}
+.hidden{
+    visibility: hidden;
+}
+
+@media screen and (min-width: 600px){
+    body{
+        grid-template-areas: '1 2';
+        grid-template-columns: 1fr 4fr;
+    }
+    div{
+        grid-area: '2';
+    }
+}

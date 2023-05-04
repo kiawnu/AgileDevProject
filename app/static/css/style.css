@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 1070px;
+}
+h1{
+    font-family: fantasy;
+    font-weight: 1;
+    font-size: 100px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+header {
+    border-top: 5px black solid;
+    font-weight: lighter;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    margin-top: 10px;
+}
+
+.header-ul {
+    justify-content: space-between;
+    list-style: none;
+    display: flex;
+}
+nav li {
+    margin: 0 1rem
+}
+
+main {
+    background-image: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    min-height: 75vh;
+    margin: 0;
+    padding: 0;
+}
+footer {
+    border-top: 5px black solid;
+    bottom: 0;
+    text-align: center;
+}
+  
+  footer p {
+    margin: 0;
+  }
+.title-ul {
+    list-style: none;
+    display: flex;
+    margin-top: 5px;
+    border-top: 5px;
+}
+.front-title{
+    margin-bottom: 0px;
+    font-size: 50px;
+}
+.front-ul{
+    list-style: none;
+    padding-top: 20%;
+}
+
