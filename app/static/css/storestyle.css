@@ -96,8 +96,8 @@ input {
   }
 
 
-
-.grid-container {
+/* 
+ul {
     display: grid;
     gap:0.5rem;
     grid-template-columns: repeat(1,minmax(0,1fr));
@@ -106,22 +106,33 @@ input {
     max-width: 80rem;
 }
 
+li {
+    disp
+}
+
+@media screen and (min-width: 480px){
+    ul {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    } 
+  }
+
+
 @media screen and (min-width: 768px){
-  .grid-container {
+  ul {
       grid-template-columns: repeat(3,minmax(0,1fr));
   } 
 }
 
 @media screen and (min-width: 1024px){
-    .grid-container {
+    ul {
         grid-template-columns: repeat(4,minmax(0,1fr));
     }
 }
 
 /* ---------------------- */
 
-
-.background-image{
+/* 
+img{
     background-position: center;
     background-size: cover;
     aspect-ratio: 16/9;
@@ -140,9 +151,39 @@ input {
     line-height: 1.75rem;
     /* overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; */
+    white-space: nowrap; 
 }
 .scientific-name{
     font-style: italic;
     color:#1bbfa0;
-}
+} */ 
+
+
+ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding:0 40px;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .plant-text-style {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .scientific-name {
+    margin-top: 5px;
+    font-size: 1rem;
+    font-style: italic;
+  }
+  
