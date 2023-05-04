@@ -52,7 +52,7 @@ p{
 
 .container{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
 }
 
 .imgContainer{
@@ -61,7 +61,8 @@ p{
 }
 
 .infoContainer{
-    margin: 10px 30px 0px 0px;
+    margin: 10px 30px 0px 0px;  
+    /* padding: 5px; */
     order: 2
 }
 
@@ -73,4 +74,17 @@ table{
     /* padding: 5px; */
     text-align: left;
     width: 100%;
+    margin-bottom: 20px;
+}
+
+.plantName{
+    font-family: fantasy;
+    font-size: 40px;
+    /* color: #0b8457; */
+}
+
+.plantSpecies{
+    font-family: 'Indie Flower', cursive;
+    color: #a9c52f;
+    font-size: 22px;
 }
