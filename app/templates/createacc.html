@@ -8,6 +8,7 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/createaccstyle.css') }}"
     />
+    <script src="../static/js/createaccount.js" defer></script>
     <title>Gardenia Sign Up</title>
   </head>
   <body>
@@ -34,6 +35,7 @@
             placeholder="Username"
             class="input-field"
             type="text"
+            id="username"
           />
         </div>
         <div class="field">
@@ -49,10 +51,10 @@
               d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
             ></path>
           </svg>
-          <input placeholder="Password" class="input-field" type="password" />
+          <input placeholder="Password" class="input-field" type="password" id="password"/>
         </div>
         <div class="btn">
-          <button class="button2">Create Account</button>
+          <button class="button2" id="create-account-btn">Create Account</button>
         </div>
       </form>
     </main>
