@@ -50,16 +50,19 @@ p{
     margin: 20px;
 }
 
+/* Container */
 .container{
     display: grid;
     grid-template-columns: 1fr 2fr;
 }
 
+/* Image container */
 .imgContainer{
     margin: 10px;
     order: 1
 }
 
+/* Info container */
 .infoContainer{
     margin: 10px 30px 0px 0px;  
     /* padding: 5px; */
@@ -85,6 +88,6 @@ table{
 
 .plantSpecies{
     font-family: 'Indie Flower', cursive;
-    color: #a9c52f;
+    color: #686ee2;
     font-size: 22px;
 }
