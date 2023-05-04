@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+h1{
+    font-family: fantasy;
+    font-weight: 1;
+    font-size: 50px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+header {
+    border-top: 5px black solid;
+    font-weight: lighter;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    margin-top: 10px;
+    border-bottom: 5px black solid;
+}
+
+.header-ul {
+    justify-content: space-between;
+    list-style: none;
+    display: flex;
+}
+nav li {
+    margin: 0 1rem
+}
+
+footer {
+    bottom: 0;
+    text-align: center;
+}
+  
+footer p {
+    margin: 0;
+}
+
+.item-img{
+    max-width: 300px;
+}
+section{
+    display: grid;
+
+}
+p{
+    margin: 20px;
+}
+
+/* Container */
+.container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+/* Image container */
+.imgContainer{
+    margin: 10px;
+    order: 1
+}
+
+/* Info container */
+.infoContainer{
+    margin: 10px 30px 0px 0px;  
+    /* padding: 5px; */
+    order: 2
+}
+
+table{
+    background-color: #a7bcb9;
+    /* border-collapse: separate; */
+    border-style: none;
+    border-spacing: 30px 15px;
+    /* padding: 5px; */
+    text-align: left;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#plantName{
+    font-family: fantasy;
+    font-size: 40px;
+    /* color: #0b8457; */
+}
+
+#plantSpecies{
+    font-family: 'Indie Flower', cursive;
+    color: #686ee2;
+    font-size: 22px;
+}

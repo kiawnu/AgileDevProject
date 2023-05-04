@@ -5,7 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gardenia</title>
-  <link rel="stylesheet" href="../../static/css/storestyle.css" />
+  <link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/storestyle.css') }}"
+/>
+
+  <script src="../static/js/script.js" defer></script>
 </head>
 
 <body>
@@ -26,104 +31,7 @@
       <button class="search-button"></button>
     </form>
     <section>
-      <ul>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        <li>
-          <a href="">
-            <img src="https://perenual.com/storage/species_image/1_abies_alba/medium/1536px-Abies_alba_SkalitC3A9.jpg"
-              alt="European Silver Fir" />
-            <h2 class="plant-text-style">Tree title</h2>
-            <h3 class="scientific-name">scientific-name</h3>
-          </a>
-        </li>
-        
+      <ul id="display-block">
       </ul>
     </section>
   </main>

@@ -86,25 +86,6 @@ h2 {
   margin-top: 2.5em;
 }
 
-.button1 {
-  padding: 0.5em;
-  padding-left: 1.1em;
-  padding-right: 1.1em;
-  border-radius: 5px;
-  margin-right: 0.5em;
-  font-family: fantasy;
-  border: none;
-  outline: none;
-  transition: 0.4s ease-in-out;
-  background-color: #252525;
-  color: white;
-}
-
-.button1:hover {
-  background-color: #e5d9b6;
-  color: black;
-}
-
 .button2 {
   padding: 0.5em;
   padding-left: 2.3em;
