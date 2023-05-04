@@ -22,6 +22,10 @@ def login() -> str:
 def info() -> str:
     return render_template("infoFront.html")
 
+@app.route("/createaccount")
+def createaccount() -> str:
+    return render_template("createacc.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
