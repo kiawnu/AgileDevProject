@@ -1,12 +1,13 @@
 from pathlib import Path
 import datetime
 from flask import Flask, jsonify, render_template, request
-
+from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
+from database.database import db
 
 app = Flask(__name__, static_url_path='/static')
-# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///store.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 app.instance_path = Path(".").resolve()
-# db.init_app(app)
+db.init_app(app)
 
 
 @app.route("/")
