@@ -4,3 +4,7 @@
 3. `.\venv\Scripts\activate`
 4. `pip install -r requirements.txt`
 5. `python .\app.py` to start 
+
+Troubleshooting:
+    `python .\createtables.py`
+    `python .\create_admin_users.py` if admin users are needed

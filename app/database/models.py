@@ -7,6 +7,11 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(300), nullable=False)
     auth = db.Column(db.Boolean, default=False)
-
+    
+    
     def __repr__(self):
-        return '<User %r>' % self.username
+        return f"{self.id}"
+    def get_id(self):
+        return self.id
+    def __auth__(self):
+        return self.auth
