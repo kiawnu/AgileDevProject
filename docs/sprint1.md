@@ -1,24 +1,24 @@
 Friday May 5 end of sprint 1
 
 # For Friday:
-    ## Progress so far:
-        - The start of all users stories have been added, these being:
-            - Non-logged in users
-            - Logged in users
-            - Admin Users
-        - Current users are/user stories: 
-            - Admin
-                - username: admin
-                - password: password
-            - User
-                - username: username
-                - password: password
-            - Non-logged in users
-                - none
-        - These users have different permissions 
-            - Admin can view the /admin/store
-            - User can view the /store
-            - Non-logged in users can view the /info
+## Progress so far:
+    - The start of all users stories have been added, these being:
+        - Non-logged in users
+        - Logged in users
+        - Admin Users
+    - Current users are/user stories: 
+        - Admin
+            - username: admin
+            - password: password
+        - User
+            - username: username
+            - password: password
+        - Non-logged in users
+            - none
+    - These users have different permissions 
+        - Admin can view the /admin/store
+        - User can view the /store
+        - Non-logged in users can view the /info
     ## Presentation  
         1. `/` => show the front page
         2. `/info` => show the info page
