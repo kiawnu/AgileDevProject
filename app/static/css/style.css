@@ -61,4 +61,7 @@ footer {
     list-style: none;
     padding-top: 20%;
 }
-
+a {
+    text-decoration: none;
+    color: inherit;
+}

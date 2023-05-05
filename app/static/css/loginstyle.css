@@ -2,6 +2,10 @@ html {
   scroll-behavior: smooth;
   height: 100%;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
 body {
   background-image: url("../assets/loginBG.jpg");

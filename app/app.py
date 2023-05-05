@@ -1,7 +1,7 @@
 from pathlib import Path
 import datetime
 from flask import Flask, jsonify, render_template, request
-from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin
+from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from database.database import db
 from database.models import User
 
@@ -26,16 +26,15 @@ def home() -> str:
 @app.route("/login", methods=["GET", "POST"])
 def login() -> str:
     if request.method == "POST":
-        email = request.form["email"]
-        password = request.form["password"]
-        remember = request.form.get("remember")
-        user = User.query.filter_by(email=email).first()
+        data = request.json
+        username = data["username"]
+        password = data["password"]
 
-        if user and user.password == password:
-            login_user(user, remember=remember)
-            return redirect('/')
-        else:
-            return f"Invalid email or password.", 400
+        user = User.query.filter_by(username=username, password=password).first()
+        if not user:
+            return 'Invalid login credentials', 401
+
+        login_user(user)
 
     return render_template("login.html")
 
@@ -43,10 +42,9 @@ def login() -> str:
 @login_required
 def logout() -> str:
     logout_user()
-    return redirect(url_for("home"))
+    return render_template("index.html")
 
 @app.route("/info")
-@login_required
 def info() -> str:
     return render_template("infoFront.html")
 
@@ -65,6 +63,17 @@ def createaccount() -> str:
         return f"Account Created", 200
 
     return render_template("createacc.html")
+
+
+@app.route("/store")
+@login_required
+def store() -> str:
+    return render_template("storeFront.html")
+
+
+@login_manager.unauthorized_handler
+def login_redirect():
+    return render_template('login.html')
 
 
 if __name__ == "__main__":

@@ -9,6 +9,10 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
 h1 {
   text-align: center;

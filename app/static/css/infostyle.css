@@ -9,6 +9,10 @@ h1{
     margin-bottom: 0px;
     margin-top: 0px;
 }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
 header {
     border-top: 5px black solid;
