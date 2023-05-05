@@ -11,7 +11,7 @@ from database.models import User
 with app.app_context():
     obj = User(username='admin', password='password', auth=True)
     db.session.add(obj)
-    print("Admin added")
-    print("Username: admin")
-    print("Password: password")
+    obj = User(username='username', password='password')
+    db.session.add(obj)
+    print(f"Admin added\nUsername: admin\nPassword: password\n---\nRegular User added\nUsername: username\nPassword: password")
     db.session.commit()
