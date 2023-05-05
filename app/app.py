@@ -97,10 +97,16 @@ def adminStore() -> str:
     
     if user.__auth__() == True:
         return render_template("adminStore.html")
+    return redirect(url_for("unauthorized"))
+
+@app.route("/unauthorized", methods=["GET"])
+def unauthorized():
+    return render_template('unauthadmin.html')
 
 @login_manager.unauthorized_handler
 def login_redirect():
-    return render_template('login.html')
+    return render_template('unauthuser.html')
+
 
 
 if __name__ == "__main__":
