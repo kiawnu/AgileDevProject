@@ -1,12 +1,6 @@
-const createAccountButton = document.getElementById('create-account-btn');
-const loginButton = document.getElementById('login-btn');
+const loginButton = document.getElementById('submit');
 const username = document.getElementById('username');
 const password = document.getElementById('password');
-
-const routeToCreateAccount = () => {
-    event.preventDefault();
-    window.location.href = '/createaccount';
-};
 
 const login = () => {
     event.preventDefault();
@@ -15,7 +9,7 @@ const login = () => {
     dataObj.username = username.value
     dataObj.password = password.value
     console.log(dataObj)
-    fetch('/login', {
+    fetch('/admin', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
@@ -24,13 +18,11 @@ const login = () => {
     })
         .then(response => {
         if (response.status == 200) {
-            window.location.href = '/'
-        }else{window.location.href = '/login'}
+            window.location.href = '/admin/store'
+        }//else{window.location.href = '/admin'}
         })
         .then(data => console.log(data))
         .catch(error => console.error(error));
 };
 
 loginButton.addEventListener('click', login);
-
-createAccountButton.addEventListener('click', routeToCreateAccount);
