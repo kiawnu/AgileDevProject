@@ -54,29 +54,36 @@ p{
     margin: 20px;
 }
 
+
 /* Container */
 .container{
     display: grid;
     grid-template-columns: 3fr 4fr;
 }
 
+
 /* Image container */
 .imgContainer{
     margin: 10px;
-    order: 1
+    order: 1;
+    height: min-content;
+}
+.share{
+    background-color: #617A55;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 15px;
 }
 
-.share{
-    
-}
 
 /* Info container */
 .infoContainer{
     margin: 10px 30px 0px 0px;  
     /* padding: 5px; */
-    order: 2
+    order: 2;
+    height: min-content;
 }
-
 table{
     background-color: #a7bcb9;
     /* border-collapse: separate; */
@@ -86,16 +93,58 @@ table{
     text-align: left;
     width: 90%;
     margin-bottom: 20px;
+    border-radius: 5px;
 }
-
 #plantName{
     font-family: fantasy;
     font-size: 40px;
     /* color: #0b8457; */
 }
-
 #plantSpecies{
     font-family: 'Indie Flower', cursive;
     color: #686ee2;
     font-size: 22px;
+}
+.inStore{
+    background-color: #FC7300;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+.cart{
+    background-color: #BFDB38;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+
+
+/* Factors section */
+.water{
+    margin: 10px;
+    width: 80%;
+    box-shadow: 2px 5px 5px darkgrey;
+    border-radius: 10px;
+    border: solid 1px darkgrey;
+    padding: 10px;
+}
+.sun{
+    margin: 10px;
+    width: 80%;
+    box-shadow: 2px 5px 5px darkgrey;
+    border-radius: 10px;
+    border: solid 1px darkgrey;
+    padding: 10px;
+}
+.pruning{
+    margin: 10px;
+    width: 80%;
+    box-shadow: 2px 5px 5px darkgrey;
+    border-radius: 10px;
+    border: solid 1px darkgrey;
+    padding: 10px;
+}
+h3{
+    font-size: large;
+    font-weight: bold;
 }
