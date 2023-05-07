@@ -57,13 +57,17 @@ p{
 /* Container */
 .container{
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 3fr 4fr;
 }
 
 /* Image container */
 .imgContainer{
     margin: 10px;
     order: 1
+}
+
+.share{
+    
 }
 
 /* Info container */
@@ -80,7 +84,7 @@ table{
     border-spacing: 30px 15px;
     /* padding: 5px; */
     text-align: left;
-    width: 100%;
+    width: 90%;
     margin-bottom: 20px;
 }
 
