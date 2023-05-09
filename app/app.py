@@ -3,7 +3,7 @@ import datetime
 from flask import Flask, jsonify, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from database.database import db
-from database.models import User
+from database.models import User, Product
 
 app = Flask(__name__, static_url_path='/static')
 app.config['SECRET_KEY'] = 'secret'
@@ -95,7 +95,7 @@ def adminStore() -> str:
     except ValueError:
         return redirect(url_for("home"))
     
-    if user.__auth__() == True:
+    if user.__auth__() == True: 
         return render_template("adminStore.html")
     return redirect(url_for("unauthorized"))
 
@@ -107,7 +107,26 @@ def unauthorized():
 def login_redirect():
     return render_template('unauthuser.html')
 
+@app.route("/admin/store/<string:name>", methods=["POST"])
+def adminAddItem(name) -> str:
+    """This function will add an item to the database
 
+    Args:
+        name (_type_): _description_
+
+    Returns:
+        str: _description_
+    """
+    # data = request.json #{'name': 'apple tree', 'price': 1, 'quantity': 1}
+
+    # product = Product(name=data['name'], price=float(data['price']), quantity=int(data['quantity']))
+    # item = Product.query.filter_by(name=data['name']).first()
+    
+    # db.session.add(product)
+    # db.session.commit()
+
+
+    pass
 
 if __name__ == "__main__":
     app.run(debug=True)

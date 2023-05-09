@@ -1,6 +1,7 @@
 const createAccountButton = document.getElementById('create-account-btn');
 const username = document.getElementById('username');
 const password = document.getElementById('password');
+
 const routeToCreateAccount = () => {
   event.preventDefault();
   let dataArray = []
@@ -25,3 +26,4 @@ const routeToCreateAccount = () => {
 };
 
 createAccountButton.addEventListener('click', routeToCreateAccount);
+

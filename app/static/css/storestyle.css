@@ -44,16 +44,9 @@ footer p {
 }
 main{
     background-color: rgb(243 244 246);
-    /* display: grid;
-    grid-template-areas: '1 2';
-    max-width: 500px; */
 }
 .item-img{
     max-width: 300px;
-}
-section{
-    display: grid;
-
 }
 p{
     margin: 20px;
@@ -100,77 +93,16 @@ input {
   }
 
 
-/* 
-ul {
-    display: grid;
-    gap:0.5rem;
-    grid-template-columns: repeat(1,minmax(0,1fr));
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 80rem;
-}
-
-li {
-    disp
-}
-
-@media screen and (min-width: 480px){
-    ul {
-        grid-template-columns: repeat(2,minmax(0,1fr));
-    } 
-  }
-
-
-@media screen and (min-width: 768px){
-  ul {
-      grid-template-columns: repeat(3,minmax(0,1fr));
-  } 
-}
-
-@media screen and (min-width: 1024px){
-    ul {
-        grid-template-columns: repeat(4,minmax(0,1fr));
-    }
-}
-
-/* ---------------------- */
-
-/* 
-img{
-    background-position: center;
-    background-size: cover;
-    aspect-ratio: 16/9;
-}
-
-.plant-description{
-    text-transform: capitalize;
-}
-
-.plant-text-padding{
-    padding:1rem;
-}
-
-.plant-text-style{
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    /* overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; 
-}
-.scientific-name{
-    font-style: italic;
-    color:#1bbfa0;
-} */ 
-
 
 ul {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-areas: '1 2 3 4';
     gap: 20px;
     padding:0 40px;
   }
   
   li {
+    max-width: 250px;
     list-style: none;
   }
   
@@ -190,4 +122,19 @@ ul {
     font-size: 1rem;
     font-style: italic;
   }
-  
+
+@media screen and (max-width: 1180px){
+    ul {
+        grid-template-areas: '1 2 3';
+    }
+}
+@media screen and (max-width: 930px){
+    ul {
+        grid-template-areas: '1 2';
+    }
+}
+@media screen and (max-width: 680px){
+    ul {
+        grid-template-areas: '1';
+    }
+}

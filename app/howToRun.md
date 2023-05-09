@@ -7,4 +7,4 @@
 
 Troubleshooting:
     `python .\createtables.py`
-    `python .\create_admin_users.py` if admin users are needed
+    `python .\create_users.py` if users are needed
