@@ -26,7 +26,7 @@ fetch(url)
     .then((response) => response.json())
     .then((data) => {
         plantName.textContent = data.common_name;
-        plantSpecies.textContent = data.scientific_name[0]
+        plantSpecies.textContent = data.
         img.src = data.default_image.regular_url
         cycle.textContent = data.cycle
         watering.textContent = data.watering
