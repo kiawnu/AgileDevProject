@@ -26,7 +26,7 @@ fetch(url)
     .then((response) => response.json())
     .then((data) => {
         plantName.textContent = data.common_name;
-        plantSpecies.textContent = data.
+        plantSpecies.textContent = data.scientific_name[0]
         img.src = data.default_image.regular_url
         cycle.textContent = data.cycle
         watering.textContent = data.watering
@@ -48,7 +48,7 @@ fetch(strUrl)
     .then((response) => response.json())
     .then((data) => {
         for (const plant of data.data) {
-            if (Number(plant.id) === Number(id)) {
+            if (Number(plant.species_id) === Number(id)) {
                 console.log(plant)
                 Pwatering.textContent = plant.section[0].description;
                 Psun.textContent = plant.section[1].description
