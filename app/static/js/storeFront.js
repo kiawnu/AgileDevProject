@@ -32,3 +32,17 @@ fetch(url)
     });
   })
   .catch((error) => console.error(error));
+
+const plantList = document.querySelector('#display-block')
+const plantSearch = document.getElementById("searchBox")
+function searchItems() {
+  for (item of plantList.getElementsByTagName('li')) {
+    if (item.innerHTML.includes(plantSearch.value) || item.innerHTML.toUpperCase().includes(plantSearch.value.toUpperCase())) {
+      item.removeAttribute('class', 'hidden')
+    }
+    else {
+      item.setAttribute('class', 'hidden')
+    }
+  }
+}
+plantSearch.addEventListener('input', searchItems);
