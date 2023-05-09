@@ -5,17 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gardenia</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit"
+      />
 </head>
 <body>
     <header>
-        <a href="/"><h1>gardenia.</h1></a>
+        <div class="logo">
+            <img width="50px" height="50px" src="../static/images/GardeniaLogo.png">
+            <a href="/"><h1>Gardenia</h1></a>
+        </div>
+        
         <nav >
             <ul class="header-ul">
+                <li class="curTab"><a href="">Home</a></li>
                 <li><a href="info">Info</a></li>
                 <li><a href="store">Store</a></li>
-                <li><a href="{% if current_user.is_authenticated %}logout{% else %}login{% endif %}" id="login">{% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
+                <!-- <li><a href="{% if current_user.is_authenticated %}logout{% else %}login{% endif %}" id="login">{% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li> -->
             </ul>
         </nav>
+
+        <!-- ignore -->
+        <div></div>
+        <div class="header-ul"><a href="{% if current_user.is_authenticated %}logout{% else %}login{% endif %}" id="login">{% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></div>
     </header>
 
     <main>

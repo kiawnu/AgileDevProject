@@ -2,51 +2,81 @@ body {
     margin: 0;
     padding: 0;
     min-width: 1070px;
+    background-image: url('../images/GardenBG.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
 }
 h1{
-    font-family: fantasy;
+    font-family: Kanit, fantasy;
     font-weight: 1;
-    font-size: 100px;
+    font-size: 50px;
     margin-bottom: 0px;
     margin-top: 0px;
+    color:white;
 }
 
 header {
-    border-top: 5px black solid;
+    /* border-top: 5px black solid; */
     font-weight: lighter;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-left: 1rem;
-    margin-top: 10px;
+    margin-top: 0px;
+    background-color:rgb(0,0,0,0.6);
+    padding:10px;
+}
+
+.logo{
+    justify-content: space-between;
+    display: flex;
+}
+
+.logo img{
+    margin:15px;
+}
+
+.curTab{
+    text-decoration: underline;
 }
 
 .header-ul {
     justify-content: space-between;
     list-style: none;
     display: flex;
+    color:white;
+    font-family: Kanit, fantasy;
+    font-size: 20px;
 }
 nav li {
     margin: 0 1rem
 }
 
 main {
-    background-image: url('../images/background.jpg');
+    /* background-image: url('../images/GardenBG.jpg'); */
     background-repeat: no-repeat;
     background-size: 100%;
     min-height: 75vh;
     margin: 0;
     padding: 0;
+    color:white;
 }
 footer {
-    border-top: 5px black solid;
+    /* border-top: 5px black solid; */
     bottom: 0;
     text-align: center;
+    background-color:rgb(0,0,0,0.6);
+    padding:22px;
+    position: fixed;
+    width: 100%;
 }
   
-  footer p {
-    margin: 0;
-  }
+footer p {
+   margin: 0;
+   color:white;
+   font-family: Kanit, fantasy;
+}
+
 .title-ul {
     list-style: none;
     display: flex;
@@ -56,6 +86,7 @@ footer {
 .front-title{
     margin-bottom: 0px;
     font-size: 50px;
+    font-family: Kanit, fantasy;
 }
 .front-ul{
     list-style: none;
@@ -64,4 +95,5 @@ footer {
 a {
     text-decoration: none;
     color: inherit;
+    font-family: Kanit, fantasy;
 }
