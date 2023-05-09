@@ -133,7 +133,7 @@ def admin_add_item(name) -> str:
 
     pass
 
-@app.route("/api/products", methods=["POST"])
+@app.route("/api/products", methods=["GET"])
 def get_products() -> str:
     products = Product.query.all()
     return jsonify([p.to_json() for p in products])

@@ -60,6 +60,7 @@ class Product(db.Model):
         return {
             "id":self.id,
             "name":self.name,
+            "sname":self.sname,
             "price":self.price,
             "img": self.img,
             "quantity":self.quantity,
