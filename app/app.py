@@ -47,6 +47,11 @@ def logout() -> str:
 def info() -> str:
     return render_template("infoFront.html")
 
+
+@app.route("/info/<int:id>")
+def infoID(id) -> str:
+    return render_template("infoPlant.html")
+
 @app.route("/createaccount", methods=["GET", "POST"])
 def createaccount() -> str:
     if request.method == "POST":

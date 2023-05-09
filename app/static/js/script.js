@@ -15,7 +15,7 @@ fetch(url)
 
       li.setAttribute("class", "species");
 
-      a.href = species.default_image.original_url;
+      a.href = `/info/${species.id}`;
       img.src = species.default_image.medium_url;
       img.alt = species.common_name;
       h2.textContent = species.common_name;
@@ -48,3 +48,4 @@ input.onkeyup = function () {
     else lis[i].style.display = "none";
   }
 };
+
