@@ -11,22 +11,22 @@ fetch(url)
       const li = document.createElement("li");
       const a = document.createElement("a");
       const img = document.createElement("img");
-      const h1 = document.createElement("h1");
       const h2 = document.createElement("h2");
       const h3 = document.createElement("h3");
+      const h4 = document.createElement("h4");
 
       li.setAttribute("class", "species");
 
       a.href = `/store/${species.id}`;
       img.src = species.img;
-      h1.textContent = species.name;
-      h2.textContent = species.sname;
-      h3.textContent = '$' + species.price;
+      h2.textContent = species.name;
+      h3.textContent = species.sname;
+      h4.textContent = '$' + species.price;
 
       a.appendChild(img);
-      a.appendChild(h1);
       a.appendChild(h2);
       a.appendChild(h3);
+      a.appendChild(h4);
       li.appendChild(a);
       section.appendChild(li);
     });
