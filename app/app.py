@@ -53,7 +53,7 @@ def infoID(id) -> str:
     return render_template("infoPlant.html")
 
 @app.route("/createaccount", methods=["GET", "POST"])
-def createaccount() -> str:
+def create_account() -> str:
     if request.method == "POST":
         data = request.json
         username = data["username"]
@@ -93,7 +93,7 @@ def admin() -> str:
     return render_template("admin.html")
 
 @app.route("/admin/store", methods=["GET"])
-def adminStore() -> str:
+def admin_store() -> str:
     try:
         user_id = f"{current_user}"
         user = User.query.filter_by(id=int(user_id)).first()
@@ -113,7 +113,7 @@ def login_redirect():
     return render_template('unauthuser.html')
 
 @app.route("/admin/store/<string:name>", methods=["POST"])
-def adminAddItem(name) -> str:
+def admin_add_item(name) -> str:
     """This function will add an item to the database
 
     Args:
@@ -132,6 +132,21 @@ def adminAddItem(name) -> str:
 
 
     pass
+
+@app.route("/api/products", methods=["GET"])
+def get_products() -> str:
+    products = Product.query.all()
+    return jsonify([p.to_json() for p in products])
+
+@app.route("/api/product/<int:plant_id>", methods=["GET"])
+def get_product_id(plant_id) -> str:
+    product =  Product.query.filter_by(id=plant_id).first()
+    return jsonify(product.to_json())
+
+@app.route("/store/<int:id>")
+@login_required
+def product_store(id) -> str:
+    return render_template("storePlant.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gardenia</title>
-    <link rel="stylesheet" href="css/storestyle.css" />
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/storestyle.css') }}"
+  />
+  <script src="../static/js/storePlant.js" defer></script>
   </head>
   <body>
     <header>
@@ -12,23 +16,18 @@
       <nav >
           <ul class="header-ul">
               <li><a href="info">Info</a></li>
-              <li><a href="store">Store/a></li>
+              <li><a href="store">Store</a></li>
                 <li><a href="{% if current_user.is_authenticated %}logout{% else %}login{% endif %}" id="login">{% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
           </ul>
       </nav>
   </header>
     <div class="flex-center">
       <main>
-        <img src="img/plant.jpg" class="item-img" alt="Internet Line" />
+        <img src="" class="item-img" alt="Internet Line" id="img"/>
         <section>
-          <h3>Plant title</h3>
-          <p>10$</p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-          </p>
+          <h3 id="name"></h3>
+          <h4 id="sname"></h4>
+          <p id="price">10$</p>
           <button class="btn">add to cart</button>
           <a href="">more info</a>
         </section>

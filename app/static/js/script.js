@@ -31,21 +31,33 @@ fetch(url)
   .catch((error) => console.error(error));
 
 //search filter
-var input = document.getElementById("searchBox");
-input.onkeyup = function () {
-  var filter = input.value.toUpperCase();
-  var lis = document.getElementsByClassName("species");
-  for (var i = 0; i < lis.length; i++) {
-    var link = lis[i].getElementsByTagName("a")[0];
-    var common_name = link.getElementsByTagName("h2")[0].innerHTML;
-    var scientific_name = link.getElementsByTagName("h3")[0].innerHTML;
-    console.log(common_name, scientific_name);
-    if (
-      common_name.toUpperCase().indexOf(filter) == 0 ||
-      scientific_name.toUpperCase().indexOf(filter) == 0
-    )
-      lis[i].style.display = "list-item";
-    else lis[i].style.display = "none";
+// var input = document.getElementById("searchBox");
+// input.onkeyup = function () {
+//   var filter = input.value.toUpperCase();
+//   var lis = document.getElementsByClassName("species");
+//   for (var i = 0; i < lis.length; i++) {
+//     var link = lis[i].getElementsByTagName("a")[0];
+//     var common_name = link.getElementsByTagName("h2")[0].innerHTML;
+//     var scientific_name = link.getElementsByTagName("h3")[0].innerHTML;
+//     console.log(common_name, scientific_name);
+//     if (
+//       common_name.toUpperCase().indexOf(filter) == 0 ||
+//       scientific_name.toUpperCase().indexOf(filter) == 0
+//     )
+//       lis[i].style.display = "list-item";
+//     else lis[i].style.display = "none";
+//   }
+// };
+const plantList = document.querySelector('#display-block')
+const plantSearch = document.getElementById("searchBox")
+function searchItems() {
+  for (item of plantList.getElementsByTagName('li')) {
+    if (item.innerHTML.includes(plantSearch.value) || item.innerHTML.toUpperCase().includes(plantSearch.value.toUpperCase())) {
+      item.removeAttribute('class', 'hidden')
+    }
+    else {
+      item.setAttribute('class', 'hidden')
+    }
   }
-};
-
+}
+plantSearch.addEventListener('input', searchItems);

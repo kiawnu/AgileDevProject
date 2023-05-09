@@ -51,6 +51,8 @@ class Order(db.Model):
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
+    sname = db.Column(db.String)
+    img = db.Column(db.String)
     price = db.Column(db.Float)
     quantity = db.Column(db.Integer)
 
@@ -58,7 +60,9 @@ class Product(db.Model):
         return {
             "id":self.id,
             "name":self.name,
+            "sname":self.sname,
             "price":self.price,
+            "img": self.img,
             "quantity":self.quantity,
         }
 
