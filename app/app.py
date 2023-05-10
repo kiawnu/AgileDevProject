@@ -152,9 +152,9 @@ def product_store(id) -> str:
 def get_cache(get_url) -> str:
     try:
         content = Cache.query.filter_by(url=get_url).first()
+        return jsonify(content.to_json())
     except:
         return f'', 400
-    return jsonify(content.to_json())
 
 @app.route("/cache/<string:get_url>", methods=["PUT"])
 def put_cache(get_url) -> str:
