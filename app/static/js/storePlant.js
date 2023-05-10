@@ -4,11 +4,10 @@ const id = urlParts.pop();
 const url =
     `/api/product/${id}`;
 
-const plantName = document.getElementById('name');
-const sname = document.getElementById('sname');
-const img = document.getElementById('img');
-const price = document.getElementById('price');
-
+const plantName = document.getElementById('store-plant-name');
+const sname = document.getElementById('store-plant-sname');
+const img = document.getElementById('store-plant-img');
+const price = document.getElementById('store-plant-price');
 
 fetch(url)
     .then((response) => response.json())
@@ -16,6 +15,9 @@ fetch(url)
         plantName.textContent = data.name
         sname.textContent = data.sname
         img.src = data.img
-        price.textContent = data.price
+        price.textContent = "CA$ " + data.price
     })
     .catch((error) => console.error(error));
+
+
+    

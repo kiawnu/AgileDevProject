@@ -22,14 +22,29 @@
       </nav>
   </header>
     <div class="flex-center">
-      <main>
-        <img src="" class="item-img" alt="Internet Line" id="img"/>
+      <main class="plant-purchase-grid">
+        <img src="" class="item-img" alt="Internet Line" id="store-plant-img"/>
         <section>
-          <h3 id="name"></h3>
-          <h4 id="sname"></h4>
-          <p id="price">10$</p>
-          <button class="btn">add to cart</button>
-          <a href="">more info</a>
+          <h2 class="plant-name" id="store-plant-name"></h2>
+          <h3 class="plant-species" id="store-plant-sname"></h3>
+          <h4 class="plant-price" id="store-plant-price">10$</h4>
+          <label class="purchase-quantity" for="Quantity">Quantity</label>
+          <select name="quantity" class="quantity-width">
+            <option selected="" value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <div class="store-plant-grid">
+            <button class="store-plant-btn">Add To Cart</button>
+            <a class="store-plant-more-info" href="">More Info</a>
+          </div>
         </section>
       </main>
     </div>
