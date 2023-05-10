@@ -1,5 +1,6 @@
 from database.database import db
 from flask_login import UserMixin
+from flask import jsonify
 
 class User(UserMixin, db.Model):
     
@@ -79,4 +80,4 @@ class Cache(db.Model):
     content = db.Column(db.String)
     
     def to_json(self):
-        return {self.url: self.content}
+        return self.content

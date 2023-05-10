@@ -154,13 +154,12 @@ def get_cache(get_url) -> str:
         content = Cache.query.filter_by(url=get_url).first()
     except:
         return f'', 400
-    
     return jsonify(content.to_json())
 
 @app.route("/cache/<string:get_url>", methods=["PUT"])
 def put_cache(get_url) -> str:
     data = request.json
-    cache = Cache(url=get_url, content=data['content']) 
+    cache = Cache(url=get_url, content=str(data))
     db.session.add(cache)
     db.session.commit()
     return 'Added to cache'
