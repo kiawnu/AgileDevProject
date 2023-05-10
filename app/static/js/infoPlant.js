@@ -21,26 +21,50 @@ const Pwatering = document.getElementById('Pwatering');
 const Psun = document.getElementById('Psun');
 const Ppruning = document.getElementById('Ppruning');
 
+fetch(`/cache/${url}`, {
+    method: 'GET',
+})
+    .then(response => {
+        if (response.status == 200) {
+            const data = response.json()
+            plantName.textContent = data.common_name;
+            plantSpecies.textContent = data.scientific_name[0]
+            img.src = data.default_image.regular_url
+            cycle.textContent = data.cycle
+            watering.textContent = data.watering
+            propogation.textContent = data.propagation.join(',')
+            hardiness.textContent = `${data.hardiness.min} - ${data.hardiness.max}`
+            sun.textContent = data.sunlight.join(',')
+            cones.textContent = data.cones
+            leaf.textContent = data.leaf
+            leafColor.textContent = data.leaf_color
+            growth.textContent = data.growth_rate
+            care.textContent = data.care_level
+        } else {
+            fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                    plantName.textContent = data.common_name;
+                    plantSpecies.textContent = data.scientific_name[0]
+                    img.src = data.default_image.regular_url
+                    cycle.textContent = data.cycle
+                    watering.textContent = data.watering
+                    propogation.textContent = data.propagation.join(',')
+                    hardiness.textContent = `${data.hardiness.min} - ${data.hardiness.max}`
+                    sun.textContent = data.sunlight.join(',')
+                    cones.textContent = data.cones
+                    leaf.textContent = data.leaf
+                    leafColor.textContent = data.leaf_color
+                    growth.textContent = data.growth_rate
+                    care.textContent = data.care_level
 
-fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-        plantName.textContent = data.common_name;
-        plantSpecies.textContent = data.scientific_name[0]
-        img.src = data.default_image.regular_url
-        cycle.textContent = data.cycle
-        watering.textContent = data.watering
-        propogation.textContent = data.propagation.join(',')
-        hardiness.textContent = `${data.hardiness.min} - ${data.hardiness.max}`
-        sun.textContent = data.sunlight.join(',')
-        cones.textContent = data.cones
-        leaf.textContent = data.leaf
-        leafColor.textContent = data.leaf_color
-        growth.textContent = data.growth_rate
-        care.textContent = data.care_level
-
+                })
+                .catch((error) => console.error(error));
+        }
     })
-    .catch((error) => console.error(error));
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
+
 
 const strUrl = 'https://perenual.com/api/species-care-guide-list?key=sk-GpRy644963aed0f69653'
 

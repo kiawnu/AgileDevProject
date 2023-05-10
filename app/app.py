@@ -3,7 +3,7 @@ import datetime
 from flask import Flask, jsonify, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from database.database import db
-from database.models import User, Product
+from database.models import User, Product, Cache
 
 app = Flask(__name__, static_url_path='/static')
 app.config['SECRET_KEY'] = 'secret'
@@ -147,6 +147,23 @@ def get_product_id(plant_id) -> str:
 @login_required
 def product_store(id) -> str:
     return render_template("storePlant.html")
+
+@app.route("/cache/<string:get_url>", methods=["GET"])
+def get_cache(get_url) -> str:
+    try:
+        content = Cache.query.filter_by(url=get_url).first()
+    except:
+        return f'', 400
+    
+    return jsonify(content.to_json())
+
+@app.route("/cache/<string:get_url>", methods=["PUT"])
+def put_cache(get_url) -> str:
+    data = request.json
+    cache = Cache(url=get_url, content=data['content']) 
+    db.session.add(cache)
+    db.session.commit()
+    return 'Added to cache'
 
 if __name__ == "__main__":
     app.run(debug=True)
