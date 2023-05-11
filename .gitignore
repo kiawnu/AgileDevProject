@@ -1,1 +1,6 @@
 app/venv
+.obsidian
+app/database/__pycache__
+app/database/__pycache__
+app/database/__pycache__
+app/database.db

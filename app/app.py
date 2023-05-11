@@ -3,7 +3,7 @@ import datetime
 from flask import Flask, jsonify, render_template, request, redirect, url_for
 from flask_login import LoginManager, login_user, logout_user, login_required, UserMixin, current_user
 from database.database import db
-from database.models import User, Product
+from database.models import User, Product, Cache, Product
 
 app = Flask(__name__, static_url_path='/static')
 app.config['SECRET_KEY'] = 'secret'
@@ -47,8 +47,13 @@ def logout() -> str:
 def info() -> str:
     return render_template("infoFront.html")
 
+
+@app.route("/info/<int:id>")
+def infoID(id) -> str:
+    return render_template("infoPlant.html")
+
 @app.route("/createaccount", methods=["GET", "POST"])
-def createaccount() -> str:
+def create_account() -> str:
     if request.method == "POST":
         data = request.json
         username = data["username"]
@@ -203,14 +208,14 @@ def admin() -> str:
     return render_template("admin.html")
 
 @app.route("/admin/store", methods=["GET"])
-def adminStore() -> str:
+def admin_store() -> str:
     try:
         user_id = f"{current_user}"
         user = User.query.filter_by(id=int(user_id)).first()
     except ValueError:
         return redirect(url_for("home"))
     
-    if user.__auth__() == True:
+    if user.__auth__() == True: 
         return render_template("adminStore.html")
     return redirect(url_for("unauthorized"))
 
@@ -222,9 +227,59 @@ def unauthorized():
 def login_redirect():
     return render_template('unauthuser.html')
 
-@app.route("/", methods=[])
+@app.route("/admin/store/<string:name>", methods=["POST"])
+def admin_add_item(name) -> str:
+    """This function will add an item to the database
+
+    Args:
+        name (_type_): _description_
+
+    Returns:
+        str: _description_
+    """
+    # data = request.json #{'name': 'apple tree', 'price': 1, 'quantity': 1}
+
+    # product = Product(name=data['name'], price=float(data['price']), quantity=int(data['quantity']))
+    # item = Product.query.filter_by(name=data['name']).first()
+    @app.route("/", methods=[])
 def err():
     return
+    # db.session.add(product)
+    # db.session.commit()
+
+
+    pass
+
+@app.route("/api/products", methods=["GET"])
+def get_products() -> str:
+    products = Product.query.all()
+    return jsonify([p.to_json() for p in products])
+
+@app.route("/api/product/<int:plant_id>", methods=["GET"])
+def get_product_id(plant_id) -> str:
+    product =  Product.query.filter_by(id=plant_id).first()
+    return jsonify(product.to_json())
+
+@app.route("/store/<int:id>")
+@login_required
+def product_store(id) -> str:
+    return render_template("storePlant.html")
+
+@app.route("/cache/<string:get_url>", methods=["GET"])
+def get_cache(get_url) -> str:
+    try:
+        content = Cache.query.filter_by(url=get_url).first()
+        return jsonify(content.to_json())
+    except:
+        return f'', 400
+
+@app.route("/cache/<string:get_url>", methods=["PUT"])
+def put_cache(get_url) -> str:
+    data = request.json
+    cache = Cache(url=get_url, content=str(data))
+    db.session.add(cache)
+    db.session.commit()
+    return 'Added to cache'
 
 if __name__ == "__main__":
     app.run(debug=True)

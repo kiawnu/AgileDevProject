@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gardenia</title>
+    <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/storestyle.css') }}"
+  />
+  <script src="../static/js/storePlant.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <a href="/"><h1>gardenia.</h1></a>
+      <nav >
+          <ul class="header-ul">
+              <li><a href="/info">Info</a></li>
+              <li><a href="/store">Store</a></li>
+                <li><a href="{% if current_user.is_authenticated %}logout{% else %}login{% endif %}" id="login">{% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
+          </ul>
+      </nav>
+  </header>
+    <div class="flex-center">
+      <main class="plant-purchase-grid">
+        <img src="" class="item-img" alt="Internet Line" id="store-plant-img"/>
+        <section>
+          <h2 class="plant-name" id="store-plant-name"></h2>
+          <h3 class="plant-species" id="store-plant-sname"></h3>
+          <h4 class="plant-price" id="store-plant-price">10$</h4>
+          <label class="purchase-quantity" for="Quantity">Quantity</label>
+          <select name="quantity" class="quantity-width">
+            <option selected="" value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <div class="store-plant-grid">
+            <button class="store-plant-btn">Add To Cart</button>
+            <a class="store-plant-more-info" href="">More Info</a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <p>Some footer info</p>
+    </footer>
+  </body>
+</html>

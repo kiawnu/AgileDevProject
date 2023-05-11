@@ -1,43 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gardenia</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/storestyle.css') }}"
+    />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gardenia</title>
-  <link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/storestyle.css') }}"
-/>
+    <script src="../static/js/storeFront.js" defer></script>
+  </head>
 
-</head>
-
-<body>
-  <header>
-    <a href="/"><h1>gardenia.</h1></a>
-    <nav >
+  <body>
+    <header>
+      <a href="/"><h1>gardenia.</h1></a>
+      <nav>
         <ul class="header-ul">
-            <li><a href="info">Info</a></li>
-            <li><a href="store">Store</a></li>
-            <li><a href="{% if current_user.is_authenticated %}logout{% else %}login{% endif %}" id="login">{% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
+          <li><a href="/info">Info</a></li>
+          <li><a href="/store">Store</a></li>
+          <li>
+            <a
+              href="{% if current_user.is_authenticated %}logout{% else %}login{% endif %}"
+              id="login"
+              >{% if current_user.is_authenticated %}Logout{% else %}Login{%
+              endif %}</a
+            >
+          </li>
         </ul>
-    </nav>
-</header>
+      </nav>
+    </header>
 
-  <main>
-    <form class="search-container">
-      <input class="searchbox-padding" placeholder=" Search For Plant Name " required="" type="text" name="search" />
-      <button class="search-button"></button>
-    </form>
-    <section>
-      <ul id="display-block">
-      </ul>
-    </section>
-  </main>
+    <main>
+      <form class="search-container" id="searchContainer">
+        <input
+          class="searchbox-padding"
+          id="searchBox"
+          placeholder=" Search For Plant Name "
+          required=""
+          type="text"
+          name="search"
+        />
+        <button class="search-button" id="searchButton"></button>
+      </form>
+      <label class="filters" for="SortBy">Sort by</label>
+      <select id="sortBy" name="sort">
+        <option value="-">-</option>
+        <option value="lowToHigh">Price: Low to High</option>
+        <option value="highToLow">Price: High to Low</option>
+      </select>
+      <h2 class="product-title">The Plant Marketplace</h2>
+      <section>
+        <ul id="display-block"></ul>
+      </section>
+    </main>
 
-  <footer>
-    <p>Some footer info</p>
-  </footer>
-</body>
-
+    <footer>
+      <p>Some footer info</p>
+    </footer>
+  </body>
 </html>
