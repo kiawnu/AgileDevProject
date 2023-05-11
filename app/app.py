@@ -74,7 +74,7 @@ def create_account() -> str:
 def store() -> str:
     return render_template("storeFront.html")
 
-@app.route("/store/<int:product_id>", methods=["GET"])
+@app.route("/api/product/<int:product_id>", methods=["GET"])
 def retrive_product(product_id):
     try:
         prod = db.session.get(Product, product_id)
@@ -248,10 +248,6 @@ def get_products() -> str:
     products = Product.query.all()
     return jsonify([p.to_json() for p in products])
 
-@app.route("/api/product/<int:plant_id>", methods=["GET"])
-def get_product_id(plant_id) -> str:
-    product =  Product.query.filter_by(id=plant_id).first()
-    return jsonify(product.to_json())
 
 @app.route("/store/<int:id>")
 @login_required
