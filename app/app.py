@@ -241,13 +241,6 @@ def admin_add_item(name) -> str:
 
     # product = Product(name=data['name'], price=float(data['price']), quantity=int(data['quantity']))
     # item = Product.query.filter_by(name=data['name']).first()
-    @app.route("/", methods=[])
-def err():
-    return
-    # db.session.add(product)
-    # db.session.commit()
-
-
     pass
 
 @app.route("/api/products", methods=["GET"])
