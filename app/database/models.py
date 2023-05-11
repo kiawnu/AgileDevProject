@@ -1,5 +1,6 @@
 from database.database import db
 from flask_login import UserMixin
+from flask import jsonify
 
 class User(UserMixin, db.Model):
     
@@ -73,3 +74,10 @@ class OrderLine(db.Model):
 
     product = db.relationship("Product")
     order = db.relationship("Order", back_populates="products")
+
+class Cache(db.Model):
+    url = db.Column(db.String, primary_key=True)
+    content = db.Column(db.String)
+    
+    def to_json(self):
+        return self.content
