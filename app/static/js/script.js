@@ -8,7 +8,6 @@ var replacedUrl = url.replace(/\//g, ",");
 fetch(`/cache/${replacedUrl}`)
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
     data = JSON.parse(data);
     data.data.forEach((species) => {
       const li = document.createElement("li");
@@ -41,7 +40,7 @@ const APIfetch = () => {
   fetch(url)
   .then((response) => response.json())
   .then((data) => {
-    console.log(`"${JSON.stringify(data)}"`)
+    console.log(`API pung!!`)
     fetch(`/cache/${replacedUrl}`, {
       method: 'PUT',
       headers: {

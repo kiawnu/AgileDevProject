@@ -25,7 +25,6 @@ const Ppruning = document.getElementById('Ppruning');
 fetch(`/cache/${replacedUrl}`)
     .then((response) => response.json())
     .then((data) => {
-        console.log(data);
         data = JSON.parse(data);
         plantName.textContent = data.common_name;
         plantSpecies.textContent = data.scientific_name[0]
@@ -50,7 +49,7 @@ const APIfetch = () => {
     fetch(url)
         .then((response) => response.json())
         .then((data) => {
-            console.log(`"${JSON.stringify(data)}"`)
+            console.log(`API pung!!`)
             fetch(`/cache/${replacedUrl}`, {
                 method: 'PUT',
                 headers: {
@@ -84,11 +83,9 @@ var STRreplacedUrl = strUrl.replace(/\//g, ",");
 fetch(`/cache/${STRreplacedUrl}`)
     .then((response) => response.json())
     .then((data) => {
-        console.log(data);
         data = JSON.parse(data);
         for (const plant of data.data) {
             if (Number(plant.species_id) === Number(id)) {
-                console.log(plant)
                 Pwatering.textContent = plant.section[0].description;
                 Psun.textContent = plant.section[1].description
                 Ppruning.textContent = plant.section[2].description
@@ -104,7 +101,7 @@ const APIfetch2 = () => {
     fetch(strUrl)
         .then((response) => response.json())
         .then((data) => {
-            console.log(`"${JSON.stringify(data)}"`)
+            console.log(`API pung!!`)
             fetch(`/cache/${STRreplacedUrl}`, {
                 method: 'PUT',
                 headers: {
@@ -116,7 +113,6 @@ const APIfetch2 = () => {
                 .catch(error => console.error(error));
             for (const plant of data.data) {
                 if (Number(plant.species_id) === Number(id)) {
-                    console.log(plant)
                     Pwatering.textContent = plant.section[0].description;
                     Psun.textContent = plant.section[1].description
                     Ppruning.textContent = plant.section[2].description
