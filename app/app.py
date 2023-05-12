@@ -28,7 +28,7 @@ def login() -> str:
         data = request.json
         username = data["username"]
         password = data["password"]
-
+        
         user = User.query.filter_by(username=username, password=password).first()
         if not user:
             return 'Invalid login credentials', 401
