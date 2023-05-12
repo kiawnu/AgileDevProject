@@ -26,7 +26,7 @@ class User(UserMixin, db.Model):
             "id":self.id,
             "name":self.name,
             "email":self.email,
-            "admin":self.is_admin,
+            "admin":self.auth,
         }
 
 class Order(db.Model):
