@@ -51,7 +51,7 @@ section{
 
 }
 p{
-    margin: 20px;
+    margin: 5px 0px 0px 20px;
 }
 
 
@@ -86,14 +86,15 @@ p{
 }
 table{
     background-color: #a7bcb9;
-    /* border-collapse: separate; */
     border-style: none;
     border-spacing: 30px 15px;
-    /* padding: 5px; */
     text-align: left;
     width: 90%;
     margin-bottom: 20px;
     border-radius: 5px;
+    table-layout: fixed;
+    height: 50%;
+    /* width: 60%; */
 }
 #plantName{
     font-family: fantasy;
