@@ -301,10 +301,11 @@ def retrieve_order(order_id):
                 return jsonify(order.to_json()), 200
             
         if db.session.get(Order, order_id) == None:
-            raise LookupError
+            raise FileNotFoundError
         else:
             raise PermissionError
-    except LookupError:
+        
+    except FileNotFoundError:
         return (
             f"Order #{order_id} could not be found.",
             404
@@ -316,48 +317,181 @@ def retrieve_order(order_id):
         )
 
 
-@app.route("/orders/neworder", methods=["POST"])
+@app.route("/orders", methods=["POST"])
 @login_required
 def create_order():
-    data = request.json
-    new_order = Order(
-        user_id=current_user.id
-    )
-
-    db.session.add(new_order)
-    db.session.commit()
-    
-    for item in data["products"]:
-        line = OrderLine(
-            product_id=item["p_id"],
-            order_id=new_order.id,
-            quantity=item["quantity"]
+    try:
+        data = request.json
+        new_order = Order(
+            user_id=current_user.id
         )
-        db.session.add(line)
-        db.session.commit()
-        new_order.products.append(line)
-    
-    db.session.add(new_order)
-    db.session.commit()
 
-    return (
-        f"Order #{new_order.id} created successfully.\n{new_order.to_json()}",
-        200
-    )
+        db.session.add(new_order)
+        db.session.commit()
+        
+        for item in data["products"]:
+            line = OrderLine(
+                product_id=item["p_id"],
+                order_id=new_order.id,
+                quantity=item["quantity"]
+            )
+            db.session.add(line)
+            db.session.commit()
+            new_order.products.append(line)
+        
+        db.session.add(new_order)
+        db.session.commit()
+
+        return (
+            f"Order #{new_order.id} created successfully.\n{new_order.to_json()}",
+            200
+        )
+    except AttributeError:
+        return (
+            "invalid attributes",
+            400
+        )
 
 @app.route("/orders/<int:order_id>/<int:product_id>", methods=["DELETE"])
-@login_required
+@login_required #use request.json for the product to be removed, not the URL
 def remove_order_line(order_id, product_id):
-    order = db.session.get(Order, order_id)
+    try:
+        order = db.session.get(Order, order_id)
+        
+        if order == None:
+            error_desc = f"Order #{order_id} could not be found."
+            raise FileNotFoundError
+        if order.user_id != current_user.id:
+            raise PermissionError
 
-    for product in order.products:
-        if product.product_id == product_id:
-            db.session.delete(product)
-            db.session.commit()
-            return (
-                f"Product #{product_id} successfully removed from order #{order_id}.",
-                200
-            )
+        for product in order.products:
+            if product.product_id == product_id:
+                db.session.delete(product)
+                db.session.commit()
+                return (
+                    f"Product #{product_id} successfully removed from order #{order_id}.",
+                    200
+                )
+            
+        error_desc = f"Product #{product_id} could not be found in order #{order_id}."
+        raise FileNotFoundError
+    
+    except FileNotFoundError:
+        return (
+            error_desc,
+            404
+        )
+    
+    except PermissionError:
+        return (
+            f"You do not have permission to delete order #{order_id}.",
+            401
+        )
+
+@app.route("/orders/<int:order_id>", methods=["DELETE"])
+@login_required
+def remove_order(order_id):
+    try:
+        order = db.session.get(Order, order_id)
+        if order == None:
+            raise FileNotFoundError
+        if order.user_id != current_user.id:
+            raise PermissionError
+        
+        for line in order.products:
+            db.session.delete(line)
+        
+        db.session.delete(order)
+        db.session.commit()
+
+        return (
+            f"Order #{order_id} removed successfully.",
+            200
+        )
+    
+    except FileNotFoundError:
+        return (
+            f"Order #{order_id} could not be found.",
+            404
+        )
+    
+    except PermissionError:
+        return (
+            f"You do not have permission to delete order #{order_id}.",
+            401
+        )
+    
+@app.route("/orders/<int:order_id>", methods=["PUT"])
+@login_required
+def append_product(order_id):
+    try:
+        order = db.session.get(Order, order_id)
+        data = request.json
+        err_string = ""
+
+        if order == None:
+            raise FileNotFoundError
+        if order.user_id != current_user.id:
+            raise PermissionError
+        if type(data["products"]) != type([]):
+            err_string = "Invalid JSON format: 'products' must be List"
+            raise AttributeError
+        
+        for product in data["products"]:
+            if type(product) == type({}):
+                if type(product["p_id"]) == type(0) and type(product["quantity"]) == type(0) and db.session.get(Product, product["p_id"]):
+                    new_line = OrderLine(
+                        product_id=product["p_id"],
+                        order_id=order.id,
+                        quantity=product["quantity"]
+                    )
+                    for item in order.products:
+                        if item.product_id == new_line.product_id:
+                            print(item)
+                            db.session.delete(item)
+                            db.session.commit()
+
+
+                    order.products.append(new_line)
+                    db.session.commit()
+
+                else:
+                    err_len = 0
+                    err_string = "Invalid JSON format: "
+                    if type(product["p_id"]) != type(0) or not db.session.get(Product, product["p_id"]):
+                        err_string += "'p_id' must be a valid product id"
+                        err_len = 1
+                    if type(product["quantity"]) != type(0):
+                        if err_len == 1:
+                            err_string += ", "
+                        err_string += "'quantity' must be an integer"
+                    raise AttributeError
+            else: 
+                err_string = "Invalid JSON format: items in 'products' List must be Dict"
+                raise AttributeError
+
+        return (
+            f"Products successfully appended to order #{order_id} successfully.",
+            200
+        )
+    
+    except FileNotFoundError:
+        return (
+            f"Order #{order_id} could not be found.",
+            404
+        )
+    
+    except PermissionError:
+        return (
+            f"You do not have permission to append to order #{order_id}.",
+            401
+        )
+    
+    except AttributeError:
+        return (
+            f"{err_string}.",
+            400
+        )
 
 @app.route("/store/<int:id>")
 @login_required
