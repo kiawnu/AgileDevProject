@@ -41,26 +41,9 @@ def test_info_id(client):
     response = client.get('/info/1')
     assert response.status_code == 200
 
-
-# def test_create_account(client):
-#     response = client.post('/createaccount', json={"username": "test", "password": "password"})
-#     assert response.status_code == 200
-
-
 def test_store(client):
     response = client.get('/store')
     assert response.status_code == 200
-
-
-# def test_retrieve_product(client):
-#     response = client.get('/api/product/1')
-#     assert response.status_code == 200
-
-
-# def test_remove_item(client):
-#     response = client.delete('/store/1')
-#     assert response.status_code == 200
-
 
 def test_get_product(client):
     response = client.get('api/product/3')
@@ -73,17 +56,6 @@ def test_get_product(client):
         "quantity": 15,
         "sname": "Abies concolor"
     }
-
-
-
-# def test_admin(client):
-#     response = client.post('/admin', json={"username": "admin", "password": "admin"})
-#     assert response.status_code == 200
-
-
-# def test_admin_store(client):
-#     response = client.get('/admin/store')
-#     assert response.status_code == 200
 
 
 def test_unauthorized(client):
