@@ -51,7 +51,7 @@ section{
 
 }
 p{
-    margin: 20px;
+    margin: 5px 0px 0px 20px;
 }
 
 
@@ -66,7 +66,7 @@ p{
 .imgContainer{
     margin: 10px;
     order: 1;
-    height: min-content;
+    height: fit-content;
 }
 .share{
     background-color: #4CACBC;
@@ -86,14 +86,13 @@ p{
 }
 table{
     background-color: #a7bcb9;
-    /* border-collapse: separate; */
     border-style: none;
     border-spacing: 30px 15px;
-    /* padding: 5px; */
     text-align: left;
     width: 90%;
     margin-bottom: 20px;
     border-radius: 5px;
+    table-layout: fixed;
 }
 #plantName{
     font-family: fantasy;
