@@ -1,5 +1,5 @@
-const currentUrl = window.location.href;
-const urlParts = currentUrl.split('/');
+const currentUrl = window.location.href; //url/stor
+const urlParts = currentUrl.split('/'); 
 const id = urlParts.pop();
 const url = `https://perenual.com/api/species/details/${id}?key=sk-GpRy644963aed0f69653`;
 var replacedUrl = url.replace(/\//g, ",");
