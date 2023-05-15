@@ -31,9 +31,9 @@ fetch(`/cache/${replacedUrl}`)
         img.src = data.default_image.regular_url
         cycle.textContent = data.cycle
         watering.textContent = data.watering
-        propogation.textContent = data.propagation.join(',')
+        propogation.textContent = data.propagation.join(', ')
         hardiness.textContent = `${data.hardiness.min} - ${data.hardiness.max}`
-        sun.textContent = data.sunlight.join(',')
+        sun.textContent = data.sunlight.join(', ')
         cones.textContent = data.cones
         leaf.textContent = data.leaf
         leafColor.textContent = data.leaf_color
@@ -64,9 +64,9 @@ const APIfetch = () => {
             img.src = data.default_image.regular_url
             cycle.textContent = data.cycle
             watering.textContent = data.watering
-            propogation.textContent = data.propagation.join(',')
+            propogation.textContent = data.propagation.join(', ')
             hardiness.textContent = `${data.hardiness.min} - ${data.hardiness.max}`
-            sun.textContent = data.sunlight.join(',')
+            sun.textContent = data.sunlight.join(', ')
             cones.textContent = data.cones
             leaf.textContent = data.leaf
             leafColor.textContent = data.leaf_color
