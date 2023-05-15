@@ -2,7 +2,7 @@ const currentUrl = window.location.href;
 const urlParts = currentUrl.split('/');
 const id = urlParts.pop();
 const url =
-    `/api/product/${id}`;
+    `/api/store/${id}`;
 
 const plantName = document.getElementById('store-plant-name');
 const sname = document.getElementById('store-plant-sname');

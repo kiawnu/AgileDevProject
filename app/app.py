@@ -74,7 +74,7 @@ def create_account() -> str:
 def store() -> str:
     return render_template("storeFront.html")
 
-@app.route("/store/<int:product_id>", methods=["GET"])
+@app.route("/api/store/<int:product_id>", methods=["GET"])
 def retreive_product(product_id):
     try:
         prod = db.session.get(Product, product_id)
