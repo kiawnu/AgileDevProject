@@ -3,8 +3,23 @@
 <head>
   <title>Example Table using DataTables</title>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/adminstorestyle.css') }}">
+
 </head>
 <body>
+<div class="adminbox">
+	<div class="admininp">
+		<input class="nameinp" placeholder=" Name* ">
+		<input class="scinameinp" placeholder=" Scientific Name* ">
+		<input class="priceinp" placeholder=" Price ">
+		<input class="quantityinp" placeholder=" Quantity ">
+	</div>
+	<div class="adminbtn">
+		<button class="addbtn">Add</button>
+		<button class="delbtn">Delete</button>
+		<button class="updatebtn">Update</button>
+	</div>
+</div>
 
 <table id="myTable" class="display">
   <thead>
@@ -19,6 +34,7 @@
   </thead>
   <tbody>
     <!-- Table data will be dynamically populated here -->
+	<!-- Scientific Name, Name, Price, Quantity as forms/inputs -->
   </tbody>
 </table>
 
