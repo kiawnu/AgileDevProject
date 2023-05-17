@@ -7,35 +7,6 @@ const checkoutItemList = document.getElementById('checkout-item-list');
 // Get the cart quantity element
 const cartQuantity = document.getElementById('cart-quantity');
 
-let totalSubtotal = 0;
-
-// Function to update the total quantity
-function updateSubTotalQuantity() {
-  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
-  cartQuantity.textContent = totalQuantity;
-}
-
-// Function to update the subtotal, total amount in the shopping cart and order summary
-function updateSubTotal() {
-  const subtotal = cartItems.reduce((total, item) => {
-    const price = parseFloat(item.price.substring(4));
-    return total + price * item.quantity;
-  }, 0);
-  
-  const taxPercentage = 5; // Assuming 5% GST
-  const tax = (subtotal * taxPercentage) / 100;
-  const total = subtotal + tax;
-
-  const taxAmount = document.getElementById('tax-amount');
-  const totalAmount = document.getElementById('total-amount');
-
-  taxAmount.textContent = `CA$${tax.toFixed(2)}`;
-  totalAmount.textContent = `CA$${total.toFixed(2)}`;
-  document.getElementById('subtotal-amount').textContent = `CA$${subtotal.toFixed(2)}`;
-}
-
-
-
 // Function to update the quantity of an item in the shopping cart
 function updateQuantity(index, quantity) {
   cartItems[index].quantity = quantity;
@@ -72,7 +43,6 @@ function renderCheckoutItems() {
     <th>Price(CA$)</th>
     <th>Subtotal</th>
     <th></th>
-    
   `;
   tableHeadings.appendChild(tableHeadingsRow);
 
@@ -109,14 +79,12 @@ function renderCheckoutItems() {
     });
 
     tableBody.appendChild(tableRow);
-
-    totalSubtotal += parseFloat(item.price.substring(4)) * item.quantity; // Calculate the total subtotal
   });
 
   const subtotalRow = document.createElement('tr');
   subtotalRow.innerHTML = `
     <td class="subtotal-line" colspan="6">Subtotal</td>
-    <td class="subtotal-cell" colspan="2">CA$ ${totalSubtotal.toFixed(2)}</td>
+    <td class="subtotal-cell" colspan="2">CA$ </td>
   `;
   tableBody.appendChild(subtotalRow);
 
@@ -129,6 +97,34 @@ function renderCheckoutItems() {
   updateSubTotal();
 }
 
+// Function to update the total quantity
+function updateSubTotalQuantity() {
+  const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+  cartQuantity.textContent = totalQuantity;
+}
+
+// Function to update the subtotal, total amount in the shopping cart and order summary
+function updateSubTotal() {
+  const subtotal = cartItems.reduce((total, item) => {
+    const price = parseFloat(item.price.substring(4));
+    return total + price * item.quantity;
+  }, 0);
+  
+  const taxPercentage = 5; // Assuming 5% GST
+  const tax = (subtotal * taxPercentage) / 100;
+  const total = subtotal + tax;
+  const updatedSubTotal = document.getElementById('subtotal-amount');
+  const taxAmount = document.getElementById('tax-amount');
+  const totalAmount = document.getElementById('total-amount');
+
+  taxAmount.textContent = `CA$${tax.toFixed(2)}`;
+  totalAmount.textContent = `CA$${total.toFixed(2)}`;
+  updatedSubTotal.textContent = `CA$${subtotal.toFixed(2)}`;
+
+  // Update the subtotal in the table
+  const subtotalCell = document.querySelector('.subtotal-cell');
+  subtotalCell.textContent = `CA$${subtotal.toFixed(2)}`;
+}
 
 // Initial rendering of the checkout items
 renderCheckoutItems();
