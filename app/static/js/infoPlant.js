@@ -25,13 +25,14 @@ let listID = []
 
 fetch('/api/products')           //api for the get request
   .then(response => response.json())
-  .then(data => {for (let i=0; i<data.length; i++) listID.push(data[i].id)})
-//   if (listID.includes(Number(id))) {StoreLink.href = `../store/${id}`}
-//   else {inStore.style.display = 'none'}
-  StoreLink.href = `../store/${id}`;
-  console.log(id);
-  console.log(listID);
-
+  .then(data => {for (let i=0; i<data.length; i++) listID.push(data[i].id);
+if (listID.includes(Number(id))) {
+  StoreLink.href = `../store/${id}`; 
+}
+else {
+  inStore.style.display = 'none'; 
+}}
+)
 
 fetch(`/cache/${replacedUrl}`)
     .then((response) => response.json())
