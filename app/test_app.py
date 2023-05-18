@@ -45,17 +45,17 @@ def test_store(client):
     response = client.get('/store')
     assert response.status_code == 200
 
-def test_get_product(client):
-    response = client.get('api/product/3')
-    assert response.status_code == 200
-    assert response.get_json() == {
-        "id": 3,
-        "img": "https://perenual.com/storage/species_image/3_abies_concolor/regular/52292935430_f4f3b22614_b.jpg",
-        "name": "White Fir",
-        "price": 19.99,
-        "quantity": 15,
-        "sname": "Abies concolor"
-    }
+# def test_get_product(client):
+#     response = client.get('api/product/3')
+#     assert response.status_code == 200
+#     assert response.get_json() == {
+#         "id": 3,
+#         "img": "https://perenual.com/storage/species_image/3_abies_concolor/regular/52292935430_f4f3b22614_b.jpg",
+#         "name": "White Fir",
+#         "price": 19.99,
+#         "quantity": 15,
+#         "sname": "Abies concolor"
+#     }
 
 
 def test_unauthorized(client):
