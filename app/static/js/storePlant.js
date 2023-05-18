@@ -11,7 +11,7 @@ const storeRedirect = document.querySelector('.store-plant-more-info');
 const quantitySelect = document.querySelector('.quantity-width');
 const cartQuantity = document.getElementById('cart-quantity');
 
-storeRedirect.href = `info/${id}`;
+storeRedirect.href = `../info/${id}`;
 
 fetch(url)
   .then((response) => response.json())

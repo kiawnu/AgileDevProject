@@ -19,8 +19,20 @@ const care = document.getElementById('care');
 const Pwatering = document.getElementById('Pwatering');
 const Psun = document.getElementById('Psun');
 const Ppruning = document.getElementById('Ppruning');
+const StoreLink = document.querySelector('.Storelink');
+const inStore = document.querySelector('.inStore');
+let listID = []
 
-
+fetch('/api/products')           //api for the get request
+  .then(response => response.json())
+  .then(data => {for (let i=0; i<data.length; i++) listID.push(data[i].id);
+if (listID.includes(Number(id))) {
+  StoreLink.href = `../store/${id}`; 
+}
+else {
+  inStore.style.display = 'none'; 
+}}
+)
 
 fetch(`/cache/${replacedUrl}`)
     .then((response) => response.json())
