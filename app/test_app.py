@@ -1,7 +1,7 @@
 import pytest
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from app.app import app
+from app import app
 from database.database import db
 
 
