@@ -1,8 +1,10 @@
-const url =
-  "https://perenual.com/api/species-list?page=1&key=sk-GpRy644963aed0f69653";
+let page = 1
+let url =
+  `https://perenual.com/api/species-list?page=${page}&key=sk-GpRy644963aed0f69653`;
 const section = document.querySelector("#display-block");
 const searchContainer = document.querySelector("#searchContainer");
 var replacedUrl = url.replace(/\//g, ",");
+
 
 fetch(`/cache/${replacedUrl}`)
   .then((response) => response.json())
@@ -28,18 +30,27 @@ fetch(`/cache/${replacedUrl}`)
       a.appendChild(h3);
       li.appendChild(a);
       section.appendChild(li);
-    });
+    }
+    );
+    page++;
+     url =
+  `https://perenual.com/api/species-list?page=${page}&key=sk-GpRy644963aed0f69653`;
+
   })
   .catch((error) => {
-    console.log("First fetch failed:", error);
+    console.log("First fetch failed:", error)
     APIfetch();
   });
 
 const APIfetch = () => {
+  page++;
+  url =
+  `https://perenual.com/api/species-list?page=${page}&key=sk-GpRy644963aed0f69653`
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       console.log(`API pung!!`);
+      replacedUrl = url.replace(/\//g, ","); 
       fetch(`/cache/${replacedUrl}`, {
         method: "PUT",
         headers: {
@@ -108,3 +119,11 @@ function searchItems() {
   }
 }
 plantSearch.addEventListener("input", searchItems);
+
+window.addEventListener("scroll", () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+  if (scrollTop + clientHeight >= scrollHeight) {
+    
+    APIfetch();
+  }
+});
