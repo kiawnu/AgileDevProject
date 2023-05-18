@@ -8,7 +8,7 @@ from database.database import db
 @pytest.fixture
 def client():
     app.config['TESTING'] = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db' 
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
     client = app.test_client()
 
 
