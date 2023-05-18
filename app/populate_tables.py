@@ -17,7 +17,7 @@ with app.app_context():
     db.session.commit()
 
 data = []
-with open("app/store.csv", "r") as fp:
+with open("store.csv", "r") as fp:
         reader = csv.DictReader(fp)
         for line in reader:
             data.append(line)
