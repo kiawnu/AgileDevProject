@@ -56,6 +56,7 @@ def infoID(id) -> str:
 def checkout() -> str:
     return render_template("checkout.html")
 
+
 @app.route("/createaccount", methods=["GET", "POST"])
 def create_account() -> str:
     if request.method == "POST":

@@ -1,32 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-    <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Gardenia</title>
-          <link
-          rel="stylesheet"
-          href="{{ url_for('static', filename='css/storestyle.css') }}"
-        />
-        <script src="../static/js/storePlant.js" defer></script>
-        </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gardenia</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/storestyle.css') }}" />
+  <script src="../static/js/checkout.js" defer></script>
+</head>
 <body>
-    <header>
-        <a href="/"><h1>gardenia.</h1></a>
-        <nav >
-            <ul class="header-ul">
-                <li><a href="/checkout.html"><img src="../static/images/shopping-cart.png" width="20px" height="20px" class="shopping_cart" alt="shopping_cart" id="store-plant-shopCart-img" /><span id="cart-quantity">0</span></a></li>
-                <li><a href="/info">Info</a></li>
-                <li><a href="/store">Store</a></li>
-                <li><a href="{% if current_user.is_authenticated %}/logout{% else %}/login{% endif %}" id="login">{% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+    <a href="/"><h1>gardenia.</h1></a>
+    <nav>
+      <ul class="header-ul">
+        <li><a href="/checkout"><img src="../static/images/shopping-cart.png" width="20px" height="20px" class="shopping_cart" alt="shopping_cart" id="store-plant-shopCart-img" /><span id="cart-quantity"></span></a></li>
+        <li><a href="/info">Info</a></li>
+        <li><a href="/store">Store</a></li>
+        <li>
+          <a
+            href="{% if current_user.is_authenticated %}/logout{% else %}/login{% endif %}"
+            id="login"
+          >
+            {% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  
+  <h2 id="shopping-cart-heading"><a href="/store" class="go-back-link"><img src="../static/images/go-back-arrow.png" width="20px" height="20px" alt="Go back" /></a><span class="cart-title">Shopping Cart</span></h2>
+  <div class="checkout-grid">
     <section>
-        <h2>Shopping Cart</h2>
-        
+      <ul id="checkout-item-list"></ul>
     </section>
-
+    <section class="order-summary">
+      <h2>Order Summary</h2>
+      <div class="checkout-container">
+        <table class="checkout-table">
+          <tbody>
+            <tr>
+              <td>Subtotal:</td>
+              <td id="subtotal-amount"></td>
+            </tr>
+            <tr>
+              <td>Shipping:</td>
+              <td id="shipping-fee">Free</td>
+            </tr>
+            <tr>
+              <td>Tax(5% GST):</td>
+              <td id="tax-amount"></td>
+            </tr>
+            <tr>
+              <td>Total:</td>
+              <td id="total-amount"></td>
+            </tr>
+          </tbody>
+        </table>
+        <button class="checkout-button">Checkout</button>
+      </div>
+    </section>
+    
+  </div>
 </body>
 </html>
