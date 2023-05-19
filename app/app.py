@@ -93,6 +93,27 @@ def info() -> str:
 def infoID(id) -> str:
     return render_template("infoPlant.html")
 
+
+@app.route("/checkout")
+def checkout() -> str:
+    return render_template("checkout.html")
+
+@app.route("/createaccount", methods=["GET", "POST"])
+def create_account() -> str:
+    if request.method == "POST":
+        data = request.json
+        username = data["username"]
+        password = data["password"]
+
+        user = User(username=username, password=password)
+        db.session.add(user)
+        db.session.commit()
+
+        login_user(user)
+        return f"Account Created", 200
+
+    return render_template("createacc.html")
+
 @app.route("/store")
 @login_required
 def store() -> str:

@@ -17,6 +17,7 @@
       <a href="/"><h1>gardenia.</h1></a>
       <nav>
         <ul class="header-ul">
+          <li><a href="/checkout"><img src="../static/images/shopping-cart.png" width="20px" height="20px" class="shopping_cart" alt="shopping_cart" id="store-plant-shopCart-img" /><span id="cart-quantity"></span></a></li>
           <li><a href="/info">Info</a></li>
           <li><a href="/store">Store</a></li>
           <li>
@@ -41,7 +42,9 @@
           type="text"
           name="search"
         />
-        <button class="search-button" id="searchButton"></button>
+        <button class="search-button" id="searchButton">
+          <span class="button_top"> search </span>
+        </button>
       </form>
       <label class="filters" for="SortBy">Sort by</label>
       <select id="sortBy" name="sort">

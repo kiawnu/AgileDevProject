@@ -15,14 +15,19 @@
       <a href="/"><h1>gardenia.</h1></a>
       <nav >
           <ul class="header-ul">
+              <li><a href="/checkout"><img src="../static/images/shopping-cart.png" width="20px" height="20px" class="shopping_cart" alt="shopping_cart" id="store-plant-shopCart-img" /><span id="cart-quantity"></span></a></li>
               <li><a href="/info">Info</a></li>
               <li><a href="/store">Store</a></li>
-                <li><a href="{% if current_user.is_authenticated %}/logout{% else %}/login{% endif %}" id="login">{% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
+              <li><a href="{% if current_user.is_authenticated %}/logout{% else %}/login{% endif %}" id="login">{% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
           </ul>
       </nav>
   </header>
     <div class="flex-center">
-      <main class="plant-purchase-grid">
+      <a href="/store" class="go-back-link">
+        <!-- Go back arrow icon -->
+        <img src="../static/images/go-back-arrow.png" width="20px" height="20px" alt="Go back" />
+      </a>
+      <main class="plant-purchase-grid"> 
         <img src="" class="item-img" alt="Internet Line" id="store-plant-img"/>
         <section>
           <h2 class="plant-name" id="store-plant-name"></h2>
