@@ -375,9 +375,11 @@ def retrieve_order(order_id):
 def create_order():
     try:
         data = request.json
-        print(data)
+        message = "Order Created"
         if current_user.orders:
             order = Order.query.filter_by(user_id=current_user.id).first()
+            db.session.query(OrderLine).filter(OrderLine.order.has(Order.user_id == current_user.id)).delete() 
+            message = "Order Updated"
         else:
             order = Order(user_id=current_user.id)
             db.session.add(order)
@@ -393,7 +395,7 @@ def create_order():
             db.session.commit()
             
         return (
-            f"Order #{order.id} created successfully.\n{order.to_json()}",
+            f"{message}",
             200
         )
     except AttributeError:
