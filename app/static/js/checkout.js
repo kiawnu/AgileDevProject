@@ -142,7 +142,8 @@ const cartAPI = () => {
     dataObj.quantity = item.quantity
     data.products.push(dataObj)
   }
-  console.log(data)
+  alert("Cart Updated!")
+  localStorage.setItem('cartItems', JSON.stringify(dataObj));
   fetch(`/orders`, {
     method: 'POST',
     headers: {
