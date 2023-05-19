@@ -4,6 +4,4 @@ app/database/__pycache__
 app/__pycache__
 venv
 database/__pycache__
-database.db
-**/database.db
 __pycache__
