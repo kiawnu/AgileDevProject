@@ -175,7 +175,6 @@ def create_product():
                 err_desc += f"{item}"
                 if item != err_list[-1]:
                     err_desc += ", "
-            raise AttributeError
 
     except AttributeError:
         return (
@@ -190,6 +189,7 @@ def create_product():
         )
 
     new_prod = Product(
+        img=data.get("img"),
         name=data.get("name"),
         sname=data.get("sname"),
         price=round(float(data.get("price")), 2),

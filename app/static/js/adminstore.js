@@ -1,12 +1,18 @@
 let data = []
 let selectedItem = ''
-$(document).ready(function () {
+let dataTable = null
+
+function loadTable() {
   fetch('/api/products')
     .then((response) => response.json())
     .then((items) => {
-      items.forEach((species) => { data.push(species) })
+      data = items;
 
-      $('#myTable').DataTable({
+      if (dataTable !== null) {
+        dataTable.destroy();
+      }
+
+      dataTable = $('#myTable').DataTable({
         data: data,
         columns: [
           { data: 'id' },
@@ -22,8 +28,15 @@ $(document).ready(function () {
       });
     })
     .catch((error) => console.error(error));
+}
 
+$(document).ready(function () {
+  loadTable();
 });
+
+function refreshTable() {
+  loadTable();
+}
 
 
 table = document.querySelector('.display tbody');
@@ -33,6 +46,10 @@ priceform = document.querySelector('.priceinp');
 quantform = document.querySelector('.quantityinp');
 imgform = document.querySelector('.imginp');
 table.addEventListener("click", dispitem);
+
+addBtn = document.querySelector('.addbtn');
+deleteBtn = document.querySelector('.delbtn');
+updateBtn = document.querySelector('.updatebtn');
 
 function dispitem(i) {
   rows = table.outerText.split('\n');
@@ -46,12 +63,11 @@ function dispitem(i) {
   items = rows[row.rowIndex - 1].split('\t')
   id = items[0]
 
-  for (item of data){
-    if (item.id === Number(id)){
+  for (item of data) {
+    if (item.id === Number(id)) {
       selectedItem = item;
       imgform.value = item.img
       nameform.value = item.name
-      console.log(item)
       snameform.value = item.sname
       priceform.value = item.price
       quantform.value = item.quantity
@@ -60,4 +76,51 @@ function dispitem(i) {
 }
 
 const addItem = () => {
+  let isDuplicate = false;
+
+  for (const item of data) {
+    if (imgform.value === item.img || nameform.value === item.name || snameform.value === item.sname) {
+      isDuplicate = true;
+      break;
+    }
+  }
+
+  if (isDuplicate) {
+    alert("Item Already in database. Please check inputs!");
+    return;
+  }
+
+  const newItem = {
+    img: imgform.value,
+    name: nameform.value,
+    sname: snameform.value,
+    price: priceform.value,
+    quantity: quantform.value
+  };
+  fetch('/admin/store/newproduct', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newItem)
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      alert(data);
+    });
+    refreshTable()
+};
+
+const deleteItem = () => {
+  fetch(`/admin/store/${selectedItem.id}`, {
+    method: 'DELETE',
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      alert(data);
+    });
+    refreshTable()
 }
+addBtn.addEventListener("click", addItem);
+deleteBtn.addEventListener("click", deleteItem);
+updateBtn.addEventListener("click", updateItem);
