@@ -27,16 +27,11 @@ $(document).ready(function () {
 
 table = document.querySelector('.display tbody');
 nameform = document.querySelector('.nameinp');
-snameform = document.querySelector('.snameinp');
+snameform = document.querySelector('.scinameinp');
 priceform = document.querySelector('.priceinp');
 quantform = document.querySelector('.quantityinp');
 imgform = document.querySelector('.imginp');
 table.addEventListener("click", dispitem);
-imgform.value = "";
-nameform.value = "";
-snameform.value = "";
-priceform.value = "";
-quantform.value = "";
 
 function dispitem(i) {
   rows = table.outerText.split('\n');
@@ -48,15 +43,16 @@ function dispitem(i) {
   }
   const row = cell.parentElement;
   items = rows[row.rowIndex - 1].split('\t')
-  console.log(rows[row.rowIndex - 1].split('\t'));
+  id = items[0]
 
   for (item of data){
-    if (item.name === items[3]){
+    if (item.id === Number(id)){
       imgform.value = item.img
+      nameform.value = item.name
+      console.log(item)
+      snameform.value = item.sname
+      priceform.value = item.price
+      quantform.value = item.quantity
     }
   }
-  nameform.value = items[2];
-  snameform.value = items[3];
-  priceform.value = items[4];
-  quantform.value = items[5];
 }
