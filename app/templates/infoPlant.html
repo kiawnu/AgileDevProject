@@ -9,16 +9,18 @@
     href="{{ url_for('static', filename='css/infostyle.css') }}"
   />
     <script src="../static/js/infoPlant.js" defer></script>
+    <script src="../static/js/storePlant.js" defer></script>
   </head>
   <body>
     <header>
       <a href="/"><h1>gardenia.</h1></a>
-      <nav >
-          <ul class="header-ul">
-              <li><a href="/info">Info</a></li>
-              <li><a href="/store">Store</a></li>
-              <li><a href="{% if current_user.is_authenticated %}/logout{% else %}/login{% endif %}" id="login">{% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
-          </ul>
+      <nav>
+        <ul class="header-ul">
+          <li><a href="/checkout"><img src="../static/images/shopping-cart.png" width="20px" height="20px" class="shopping_cart" alt="shopping_cart" id="store-plant-shopCart-img" /><span id="cart-quantity"></span></a></li>
+          <li><a href="/info">Info</a></li>
+          <li><a href="/store">Store</a></li>
+          <li><a href="{% if current_user.is_authenticated %}/logout{% else %}/login{% endif %}" id="login">{% if current_user.is_authenticated %}Logout{% else %}Login{% endif %}</a></li>
+        </ul>
       </nav>
   </header>
 
@@ -54,7 +56,7 @@
                 </tr>
                 </table>
             <button class="inStore"><a class ="Storelink" href="">Find in Store</a></button>
-            <button class="cart">Add to Cart </button>
+            <!-- <button class="cart"><a class ="Cartlink" href="">Add to Cart</a></button> -->
         </div>
       </div>
       <div class="water">
