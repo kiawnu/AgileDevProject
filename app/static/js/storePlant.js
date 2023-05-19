@@ -1,7 +1,7 @@
 const currentUrl = window.location.href;
 const urlParts = currentUrl.split('/');
 const id = urlParts.pop();
-const url = `/api/store/${id}`;
+const url = `/api/product/${id}`;
 
 const plantName = document.getElementById('store-plant-name');
 const sname = document.getElementById('store-plant-sname');

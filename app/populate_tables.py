@@ -28,3 +28,17 @@ with app.app_context():
         db.session.add(item)
         print('*', end=' ')
     db.session.commit()
+    
+with app.app_context():
+    order = {
+    "products": [
+        {
+            "p_id": 2,
+            "quantity": 3
+        },
+        {
+            "p_id": 1,
+            "quantity": 3
+    }
+    ]
+}

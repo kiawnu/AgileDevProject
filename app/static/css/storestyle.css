@@ -237,7 +237,7 @@ thead {
     text-align: center;
 }
 
-.delete-button,.checkout-button {
+.delete-button,.checkout-button, .savecart-button {
     background-color: #179773;
     color: #ffffff;
     font-weight: bold;
@@ -247,18 +247,18 @@ thead {
     cursor: pointer;
 }
 
-.checkout-button {
+.checkout-button,.savecart-button {
     margin: 2px 0;
     padding: 10px;
     font-size: 18px;
 }
 
-.delete-button:hover {
+.delete-button:hover, {
     background-color: #94291C;
     box-shadow: 0 0 5px 2px #0000004d;
   }
 
-.checkout-button:hover {
+.checkout-button:hover,.savecart-button:hover {
     background-color: #FFFF00;
     color:black;
     box-shadow: 0 0 5px 2px #0000004d;
@@ -288,7 +288,7 @@ width: 40%;
 border-collapse: collapse;
 }
 
-.checkout-button {
+.checkout-button, .savecart-button {
 width: 40%;
 }
   
@@ -450,4 +450,7 @@ img {
         grid-template-areas: '1';
     }
 }
-
+.single-grid {
+  display: grid;
+  grid-template-areas: '1';
+}
