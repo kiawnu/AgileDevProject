@@ -8,3 +8,4 @@
 
 Troubleshooting:
     `pytest` will run all test_***.py files
+    delete the db and redo above

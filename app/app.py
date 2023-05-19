@@ -202,6 +202,32 @@ def create_product():
         200
     )
 
+@app.route("/orders/process", methods=["GET"])
+@login_required
+def process_order():
+    try:
+        order = Order.query.filter_by(user_id=current_user.id).first()
+        order_line = OrderLine.query.filter_by(order_id=order.id).all()
+        
+        for product in order_line:
+            product_obj = db.session.get(OrderLine, (product.product_id, order.id))
+            plant = db.session.get(Product, product.product_id)
+            if (plant.quantity - product_obj.quantity) < 0:
+                product_obj.quantity = plant.quantity
+                plant.quantity = 0
+            else:
+                plant.quantity -= product_obj.quantity
+
+            db.session.delete(product_obj)
+            db.session.commit()
+            
+        db.session.query(OrderLine).filter(OrderLine.order.has(Order.user_id == current_user.id)).delete() 
+        db.session.delete(order)
+        db.session.commit()
+        return 'Order Processed', 200
+    except AttributeError:
+        return "Please save cart before checking out", 400
+
 
 @app.route("/admin/store/<int:product_id>", methods=["PUT"])
 @login_required

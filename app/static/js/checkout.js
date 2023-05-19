@@ -132,10 +132,10 @@ updateSubTotalQuantity();
 updateSubTotal();
 
 const saveCartButton = document.querySelector('.savecart-button')
+const checkOutButton = document.querySelector('.checkout-button')
 
 const cartAPI = () => {
-  console.log(cartItems)
-  let data = {products: []}
+  let data = { products: [] }
   for (item of cartItems) {
     let dataObj = {}
     dataObj.p_id = item.p_id
@@ -143,14 +143,41 @@ const cartAPI = () => {
     data.products.push(dataObj)
   }
   alert("Cart Updated!")
-  localStorage.setItem('cartItems', JSON.stringify(dataObj));
   fetch(`/orders`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
-  }).then((response) => console.log(response.text()))
+  }).then((response) => response.text())
+    .then((data) => {
+      alert(data);
+    });
 }
 saveCartButton.addEventListener('click', cartAPI);
+
+
+const checkOut = () => {
+  fetch(`/orders/process`)
+    .then((response) => {
+      if (response.ok) {
+        // Successful response
+        return response.text();
+      } else {
+        // Error response
+        throw new Error(response.text());
+      }
+    })
+    .then((data) => {
+      alert(data);
+      localStorage.clear();
+      location.reload();
+    })
+    .catch((error) => {
+      alert('Please save your cart before checking out');
+    });
+};
+
+checkOutButton.addEventListener('click', checkOut);
+
 
