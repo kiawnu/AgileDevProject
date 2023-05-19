@@ -43,43 +43,67 @@ def logout() -> str:
     logout_user()
     return redirect(url_for("home"))
 
+@app.route("/createaccount", methods=["GET", "POST"])
+def create_account():
+    try:
+        if request.method == "POST":
+            data = request.json
+            err_desc = ""
+
+            if type(data["username"]) != type("e"):
+                err_desc = "'username' must be a string."
+                raise AttributeError
+            
+            if User.query.filter_by(username=data["username"]):
+                err_desc = "'username' must be unique."
+                raise AttributeError
+            
+            if type(data["password"]) != type("e"):
+                err_desc = "'password' must be a string."
+                raise AttributeError
+
+            user = User(
+                username=data["username"], 
+                password=data["password"]
+                )
+            
+            db.session.add(user)
+            db.session.commit()
+
+            login_user(user)
+
+            return (
+                f"Account Created.", 
+                200
+                )
+        return render_template("createacc.html")
+            
+    except AttributeError:
+        return (
+            err_desc,
+            400
+        )
+        
+
 @app.route("/info")
 def info() -> str:
     return render_template("infoFront.html")
-
 
 @app.route("/info/<int:id>")
 def infoID(id) -> str:
     return render_template("infoPlant.html")
 
+
 @app.route("/checkout")
 def checkout() -> str:
     return render_template("checkout.html")
-
-
-@app.route("/createaccount", methods=["GET", "POST"])
-def create_account() -> str:
-    if request.method == "POST":
-        data = request.json
-        username = data["username"]
-        password = data["password"]
-
-        user = User(username=username, password=password)
-        db.session.add(user)
-        db.session.commit()
-
-        login_user(user)
-        return f"Account Created", 200
-
-    return render_template("createacc.html")
-
 
 @app.route("/store")
 @login_required
 def store() -> str:
     return render_template("storeFront.html")
 
-@app.route("/api/store/<int:product_id>", methods=["GET"])
+@app.route("/api/product/<int:product_id>", methods=["GET"])
 def retreive_product(product_id):
     try:
         prod = db.session.get(Product, product_id)
@@ -94,7 +118,7 @@ def retreive_product(product_id):
         )
 
 @app.route("/admin/store/<int:product_id>", methods=["DELETE"])
-def remove_item(product_id):
+def remove_product(product_id):
     try:
         if current_user.__auth__() != True:
                 raise PermissionError
@@ -124,10 +148,12 @@ def create_product():
                 raise PermissionError
             
             err_list = []
-            err_string = ""
+            err_desc = ""
             
             if type(data["name"]) != type("e"):
                 err_list.append("name must be string")
+            if type(data["sname"]) != type("e"):
+                err_list.append("scientific name must be string")
             if type(data["price"]) != type(0) and type(data["price"]) != type(0.0):
                 err_list.append("price must be numeric")
             if type(data["quantity"]) != type(0):
@@ -135,25 +161,26 @@ def create_product():
             
             if len(err_list) > 0:
                 for item in err_list:
-                    err_string += f"{item}"
+                    err_desc += f"{item}"
                     if item != err_list[-1]:
-                        err_string += ", "
+                        err_desc += ", "
                 raise AttributeError
             
     except AttributeError:
         return (
-            f"Invalid format for product attributes: {err_string}.",
+            f"Invalid format for product attributes: {err_desc}.",
             400
         )
     
     except PermissionError:
         return (
-            f"err", #use permissions code
+            f"You do not have permission to add a new product.",
             401
         )
         
     new_prod = Product(
         name=data.get("name"),
+        sname=data.get("sname"),
         price=round(float(data.get("price")), 2),
         quantity=data.get("quantity")
         )
@@ -177,7 +204,7 @@ def update_product(product_id):
                 raise PermissionError
             
             err_list = []
-            err_string = ""
+            err_desc = ""
             
             if type(data["name"]) != type("e") and type(data["name"]) != type(None):
                 err_list.append("name must be string")
@@ -188,14 +215,14 @@ def update_product(product_id):
             
             if len(err_list) > 0:
                 for item in err_list:
-                    err_string += f"{item}"
+                    err_desc += f"{item}"
                     if item != err_list[-1]:
-                        err_string += ", "
+                        err_desc += ", "
                 raise AttributeError
             
         except AttributeError:
             return (
-                f"Invalid format for product attributes: {err_string}.",
+                f"Invalid format for product attributes: {err_desc}.",
                 400
             )
         
@@ -364,7 +391,7 @@ def remove_order_line(order_id, product_id):
         order = db.session.get(Order, order_id)
         
         if order == None:
-            error_desc = f"Order #{order_id} could not be found."
+            err_desc = f"Order #{order_id} could not be found."
             raise FileNotFoundError
         if order.user_id != current_user.id:
             raise PermissionError
@@ -378,12 +405,12 @@ def remove_order_line(order_id, product_id):
                     200
                 )
             
-        error_desc = f"Product #{product_id} could not be found in order #{order_id}."
+        err_desc = f"Product #{product_id} could not be found in order #{order_id}."
         raise FileNotFoundError
     
     except FileNotFoundError:
         return (
-            error_desc,
+            err_desc,
             404
         )
     
@@ -432,14 +459,14 @@ def append_product(order_id):
     try:
         order = db.session.get(Order, order_id)
         data = request.json
-        err_string = ""
+        err_desc = ""
 
         if order == None:
             raise FileNotFoundError
         if order.user_id != current_user.id:
             raise PermissionError
         if type(data["products"]) != type([]):
-            err_string = "Invalid JSON format: 'products' must be List"
+            err_desc = "Invalid JSON format: 'products' must be List"
             raise AttributeError
         
         for product in data["products"]:
@@ -462,17 +489,17 @@ def append_product(order_id):
 
                 else:
                     err_len = 0
-                    err_string = "Invalid JSON format: "
+                    err_desc = "Invalid JSON format: "
                     if type(product["p_id"]) != type(0) or not db.session.get(Product, product["p_id"]):
-                        err_string += "'p_id' must be a valid product id"
+                        err_desc += "'p_id' must be a valid product id"
                         err_len = 1
                     if type(product["quantity"]) != type(0):
                         if err_len == 1:
-                            err_string += ", "
-                        err_string += "'quantity' must be an integer"
+                            err_desc += ", "
+                        err_desc += "'quantity' must be an integer"
                     raise AttributeError
             else: 
-                err_string = "Invalid JSON format: items in 'products' List must be Dict"
+                err_desc = "Invalid JSON format: items in 'products' List must be Dict"
                 raise AttributeError
 
         return (
@@ -494,7 +521,7 @@ def append_product(order_id):
     
     except AttributeError:
         return (
-            f"{err_string}.",
+            f"{err_desc}.",
             400
         )
 
