@@ -121,6 +121,28 @@ const deleteItem = () => {
     });
     refreshTable()
 }
+
+const updateItem = () => {
+  const item = {
+    img: imgform.value,
+    name: nameform.value,
+    sname: snameform.value,
+    price: priceform.value,
+    quantity: quantform.value
+  };
+  fetch(`/admin/store/${selectedItem.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(item)
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      alert(data);
+    });
+    refreshTable()
+}
 addBtn.addEventListener("click", addItem);
 deleteBtn.addEventListener("click", deleteItem);
 updateBtn.addEventListener("click", updateItem);

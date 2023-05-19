@@ -230,7 +230,6 @@ def update_product(product_id):
                     err_desc += f"{item}"
                     if item != err_list[-1]:
                         err_desc += ", "
-                raise AttributeError
 
         except AttributeError:
             return (
