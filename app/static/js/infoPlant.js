@@ -1,5 +1,5 @@
-const currentUrl = window.location.href;
-const urlParts = currentUrl.split('/');
+const currentUrl = window.location.href; //url/stor
+const urlParts = currentUrl.split('/'); 
 const id = urlParts.pop();
 const url = `https://perenual.com/api/species/details/${id}?key=sk-GpRy644963aed0f69653`;
 var replacedUrl = url.replace(/\//g, ",");
@@ -19,8 +19,20 @@ const care = document.getElementById('care');
 const Pwatering = document.getElementById('Pwatering');
 const Psun = document.getElementById('Psun');
 const Ppruning = document.getElementById('Ppruning');
+const StoreLink = document.querySelector('.Storelink');
+const inStore = document.querySelector('.inStore');
+let listID = []
 
-
+fetch('/api/products')           //api for the get request
+  .then(response => response.json())
+  .then(data => {for (let i=0; i<data.length; i++) listID.push(data[i].id);
+if (listID.includes(Number(id))) {
+  StoreLink.href = `../store/${id}`; 
+}
+else {
+  inStore.style.display = 'none'; 
+}}
+)
 
 fetch(`/cache/${replacedUrl}`)
     .then((response) => response.json())

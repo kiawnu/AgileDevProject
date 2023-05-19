@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-size: larger;
 }
 h1{
     font-family: fantasy;
@@ -73,7 +74,7 @@ p{
     padding: 5px 10px;
     border: none;
     border-radius: 3px;
-    font-size: 15px;
+    font-size: larger;
 }
 
 
@@ -93,16 +94,18 @@ table{
     margin-bottom: 20px;
     border-radius: 5px;
     table-layout: fixed;
+    font-size: larger;
 }
 #plantName{
     font-family: fantasy;
-    font-size: 40px;
+    font-size: xx-large;
     /* color: #0b8457; */
 }
 #plantSpecies{
     font-family: 'Indie Flower', cursive;
     color: #686ee2;
-    font-size: 22px;
+    font-size: larger;
+    margin-bottom: 20px;
 }
 .inStore{
     background-color: #FC7300;
@@ -126,6 +129,7 @@ table{
     border-radius: 10px;
     border: solid 1px darkgrey;
     padding: 10px;
+    font-size: larger;
 }
 .sun{
     margin: 10px;
@@ -134,6 +138,7 @@ table{
     border-radius: 10px;
     border: solid 1px darkgrey;
     padding: 10px;
+    font-size: larger;
 }
 .pruning{
     margin: 10px;
@@ -142,8 +147,13 @@ table{
     border-radius: 10px;
     border: solid 1px darkgrey;
     padding: 10px;
+    font-size: larger;
 }
 h3{
     font-size: large;
     font-weight: bold;
+}
+
+button{
+    font-size: large;
 }

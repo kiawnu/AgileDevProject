@@ -2,7 +2,7 @@ const url = "/api/products";
 const searchContainer = document.querySelector("#searchContainer");
 const plantList = document.querySelector("#display-block");
 const plantSearch = document.getElementById("searchBox");
-
+const cartQuantity = document.getElementById("cart-quantity");
 
 fetch(url)
   .then((response) => response.json())
@@ -39,6 +39,19 @@ function displayItems(items) {
     li.appendChild(a);
     plantList.appendChild(li);
   });
+
+  updateCartQuantity();
+}
+
+function updateCartQuantity() {
+  const storedQuantity = localStorage.getItem('cartQuantity');
+  if (storedQuantity) {
+    cartQuantity.textContent = storedQuantity;
+  } else {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+    cartQuantity.textContent = totalQuantity;
+  }
 }
 
 function sortItems() {
@@ -76,5 +89,6 @@ function searchItems() {
 }
 
 plantSearch.addEventListener("input", searchItems);
-
 document.querySelector("#sortBy").addEventListener("change", sortItems);
+
+updateCartQuantity();
