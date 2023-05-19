@@ -1,4 +1,5 @@
 let data = []
+let selectedItem = ''
 $(document).ready(function () {
   fetch('/api/products')
     .then((response) => response.json())
@@ -47,6 +48,7 @@ function dispitem(i) {
 
   for (item of data){
     if (item.id === Number(id)){
+      selectedItem = item;
       imgform.value = item.img
       nameform.value = item.name
       console.log(item)
@@ -55,4 +57,7 @@ function dispitem(i) {
       quantform.value = item.quantity
     }
   }
+}
+
+const addItem = () => {
 }
