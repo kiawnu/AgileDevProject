@@ -4,20 +4,21 @@
   <title>Example Table using DataTables</title>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/adminstorestyle.css') }}">
-
+  <script src="../static/js/adminroutes.js" defer></script>
 </head>
 <body>
 <div class="adminbox">
 	<div class="admininp">
-		<input class="nameinp" placeholder=" Name* ">
-		<input class="scinameinp" placeholder=" Scientific Name* ">
-		<input class="priceinp" placeholder=" Price ">
-		<input class="quantityinp" placeholder=" Quantity ">
+    <input id="id" class="idinp" placeholder=" ID* ">
+		<input id="name" class="nameinp" placeholder=" Name* ">
+		<input id="sname" class="scinameinp" placeholder=" Scientific Name* ">
+		<input id="price" class="priceinp" placeholder=" Price ">
+		<input id="quantity" class="quantityinp" placeholder=" Quantity ">
 	</div>
 	<div class="adminbtn">
-		<button class="addbtn">Add</button>
-		<button class="delbtn">Delete</button>
-		<button class="updatebtn">Update</button>
+		<button id="addbtn" class="addbtn">Add</button>
+		<button id="delbtn"class="delbtn">Delete</button>
+		<button id="updatebtn" class="updatebtn">Update</button>
 	</div>
 </div>
 

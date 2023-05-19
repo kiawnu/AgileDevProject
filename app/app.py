@@ -113,7 +113,7 @@ def retreive_product(product_id):
         )
 
 @app.route("/admin/store/<int:product_id>", methods=["DELETE"])
-def remove_item(product_id):
+def remove_product(product_id):
     try:
         if current_user.__auth__() != True:
                 raise PermissionError
@@ -147,6 +147,8 @@ def create_product():
             
             if type(data["name"]) != type("e"):
                 err_list.append("name must be string")
+            if type(data["sname"]) != type("e"):
+                err_list.append("scientific name must be string")
             if type(data["price"]) != type(0) and type(data["price"]) != type(0.0):
                 err_list.append("price must be numeric")
             if type(data["quantity"]) != type(0):
@@ -167,12 +169,13 @@ def create_product():
     
     except PermissionError:
         return (
-            f"err", #use permissions code
+            f"You do not have permission to add a new product.",
             401
         )
         
     new_prod = Product(
         name=data.get("name"),
+        sname=data.get("sname"),
         price=round(float(data.get("price")), 2),
         quantity=data.get("quantity")
         )
