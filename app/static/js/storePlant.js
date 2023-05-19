@@ -49,6 +49,7 @@ addToCartButton.addEventListener('click', function () {
   } else {
     // Plant doesn't exist in the cart, create a new item
     const newItem = {
+      p_id: id,
       plantName: plantName.textContent,
       sname: sname.textContent,
       img: plantImg.src,

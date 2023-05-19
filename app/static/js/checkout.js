@@ -109,7 +109,7 @@ function updateSubTotal() {
     const price = parseFloat(item.price.substring(4));
     return total + price * item.quantity;
   }, 0);
-  
+
   const taxPercentage = 5; // Assuming 5% GST
   const tax = (subtotal * taxPercentage) / 100;
   const total = subtotal + tax;
@@ -130,3 +130,26 @@ function updateSubTotal() {
 renderCheckoutItems();
 updateSubTotalQuantity();
 updateSubTotal();
+
+const saveCartButton = document.querySelector('.savecart-button')
+
+const cartAPI = () => {
+  console.log(cartItems)
+  let data = {products: []}
+  for (item of cartItems) {
+    let dataObj = {}
+    dataObj.p_id = item.p_id
+    dataObj.quantity = item.quantity
+    data.products.push(dataObj)
+  }
+  console.log(data)
+  fetch(`/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then((response) => console.log(response.text()))
+}
+saveCartButton.addEventListener('click', cartAPI);
+

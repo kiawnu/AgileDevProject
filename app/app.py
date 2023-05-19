@@ -375,34 +375,30 @@ def retrieve_order(order_id):
 def create_order():
     try:
         data = request.json
-        new_order = Order(
-            user_id=current_user.id
-        )
-
-        db.session.add(new_order)
-        db.session.commit()
+        print(data)
+        if current_user.orders:
+            order = Order.query.filter_by(user_id=current_user.id).first()
+        else:
+            order = Order(user_id=current_user.id)
+            db.session.add(order)
+            db.session.commit()
 
         for item in data["products"]:
             line = OrderLine(
-                product_id=item["p_id"],
-                order_id=new_order.id,
-                quantity=item["quantity"]
+                product_id=int(item["p_id"]),
+                order_id=order.id,
+                quantity=int(item["quantity"])
             )
-            db.session.add(line
-                           )
+            db.session.add(line)
             db.session.commit()
-            new_order.products.append(line)
-
-        db.session.add(new_order)
-        db.session.commit()
-
+            
         return (
-            f"Order #{new_order.id} created successfully.\n{new_order.to_json()}",
+            f"Order #{order.id} created successfully.\n{order.to_json()}",
             200
         )
     except AttributeError:
         return (
-            "invalid attributes",
+            "Invalid attributes",
             400
         )
 
