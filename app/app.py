@@ -246,6 +246,10 @@ def update_product(product_id):
 
             if type(data["name"]) != type("e") and type(data["name"]) != type(None):
                 err_list.append("name must be string")
+            if type(data["sname"]) != type("e") and type(data["sname"]) != type(None):
+                err_list.append("sname must be string")
+            if type(data["img"]) != type("e") and type(data["img"]) != type(None):
+                err_list.append("img must be string")
             if type(data["price"]) != type(0) and type(data["price"]) != type(None) and type(data["price"]) != type(0.0):
                 err_list.append("price must be numeric")
             if type(data["quantity"]) != type(0) and type(data["quantity"]) != type(None):
@@ -268,6 +272,10 @@ def update_product(product_id):
         # checks update values
         if data.get("name") == None:
             data.update({"name": old_prod.name})
+        if data.get("sname") == None:
+            data.update({"sname": old_prod.name})
+        if data.get("img") == None:
+            data.update({"img": old_prod.name})
         if data.get("price") == None:
             data.update({"price": old_prod.price})
         if data.get("quantity") == None:
@@ -276,6 +284,8 @@ def update_product(product_id):
         new_prod = Product(
             id=product_id,
             name=data.get("name"),
+            sname=data.get("sname"),
+            img=data.get("img"),
             price=round(float(data.get("price")), 2),
             quantity=data.get("quantity")
         )
