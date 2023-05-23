@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-size: larger;
+    background-color: #e5d9b6;
 }
 h1{
     font-family: fantasy;
@@ -70,7 +70,7 @@ p{
     height: fit-content;
 }
 .share{
-    background-color: #4CACBC;
+    background-color: #5f8d4e;
     padding: 5px 10px;
     border: none;
     border-radius: 3px;
@@ -108,17 +108,12 @@ table{
     margin-bottom: 5px;
 }
 .inStore{
-    background-color: #FC7300;
+    background-color: #5f8d4e;
     border: none;
     border-radius: 3px;
     padding: 5px 10px;
 }
-.cart{
-    background-color: #BFDB38;
-    border: none;
-    border-radius: 3px;
-    padding: 5px 10px;
-}
+
 
 
 /* Factors section */
@@ -129,7 +124,8 @@ table{
     border-radius: 10px;
     border: solid 1px darkgrey;
     padding: 10px;
-    font-size: larger;
+    background-color: #a4be7be0;
+
 }
 .sun{
     margin: 10px;
@@ -138,7 +134,7 @@ table{
     border-radius: 10px;
     border: solid 1px darkgrey;
     padding: 10px;
-    font-size: larger;
+    background-color: #a4be7be0;
 }
 .pruning{
     margin: 10px;
@@ -147,7 +143,7 @@ table{
     border-radius: 10px;
     border: solid 1px darkgrey;
     padding: 10px;
-    font-size: larger;
+    background-color: #a4be7be0;
 }
 h3{
     font-size: large;
