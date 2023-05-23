@@ -30,8 +30,9 @@ class User(UserMixin, db.Model):
         }
 
 class Order(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    id = db.Column(db.Integer, primary_key=True,  autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"),  autoincrement=False)
+    completed = db.Column(db.Boolean, default=False)
     
     products = db.relationship("OrderLine", back_populates="order")
 

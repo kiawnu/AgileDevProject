@@ -1,5 +1,7 @@
 app/venv
 .obsidian
 app/database/__pycache__
-app/database.db
 app/__pycache__
+venv
+database/__pycache__
+__pycache__

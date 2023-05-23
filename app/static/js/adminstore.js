@@ -1,160 +1,148 @@
-$(document).ready(function() {
-    var data = [
-    {
-      "id": 1,
-      "img": "https://perenual.com/storage/species_image/1_abies_alba/regular/1536px-Abies_alba_SkalitC3A9.jpg",
-      "name": "European Silver Fir",
-      "price": 25.99,
-      "quantity": 10,
-      "sname": "Abies alba"
-    },
-    {
-      "id": 2,
-      "img": "https://perenual.com/storage/species_image/2_abies_alba_pyramidalis/regular/49255769768_df55596553_b.jpg",
-      "name": "Pyramidalis Silver Fir",
-      "price": 29.99,
-      "quantity": 8,
-      "sname": "Abies alba 'Pyramidalis'"
-    },
-    {
-      "id": 3,
-      "img": "https://perenual.com/storage/species_image/3_abies_concolor/regular/52292935430_f4f3b22614_b.jpg",
-      "name": "White Fir",
-      "price": 19.99,
-      "quantity": 15,
-      "sname": "Abies concolor"
-    },
-    {
-      "id": 4,
-      "img": "https://perenual.com/storage/species_image/4_abies_concolor_candicans/regular/49283844888_332c9e46f2_b.jpg",
-      "name": "Candicans White Fir",
-      "price": 24.99,
-      "quantity": 12,
-      "sname": "Abies concolor 'Candicans'"
-    },
-    {
-      "id": 5,
-      "img": "https://perenual.com/storage/species_image/5_abies_fraseri/regular/36843539702_e80fc436e0_b.jpg",
-      "name": "Black Hills Spruce",
-      "price": 32.99,
-      "quantity": 6,
-      "sname": "Picea glauca var. densata"
-    },
-    {
-      "id": 6,
-      "img": "https://perenual.com/storage/species_image/6_abies_koreana_aurea/regular/49235570926_99ec10781d_b.jpg",
-      "name": "Colorado Blue Spruce",
-      "price": 39.99,
-      "quantity": 5,
-      "sname": "Picea pungens"
-    },
-    {
-      "id": 7,
-      "img": "https://perenual.com/storage/species_image/7_abies_lasiocarpa/regular/51002756843_74fae3c2fa_b.jpg",
-      "name": "Colorado Spruce",
-      "price": 45.99,
-      "quantity": 4,
-      "sname": "Picea pungens 'Glauca'"
-    },
-    {
-      "id": 8,
-      "img": "https://perenual.com/storage/species_image/8_abies_pinsapo_glauca/regular/21657514018_c0d9fed9f4_b.jpg",
-      "name": "Norway Spruce",
-      "price": 29.99,
-      "quantity": 7,
-      "sname": "Picea abies"
-    },
-    {
-      "id": 9,
-      "img": "https://perenual.com/storage/species_image/9_abies_procera/regular/49107504112_6bd7effb8b_b.jpg",
-      "name": "Serbian Spruce",
-      "price": 27.99,
-      "quantity": 9,
-      "sname": "Picea omorika"
-    },
-    {
-      "id": 10,
-      "img": "https://perenual.com/storage/species_image/10_acer_johin/regular/pexels-photo-2183508.jpg",
-      "name": "Dwarf Alberta Spruce",
-      "price": 24.99,
-      "quantity": 12,
-      "sname": "Picea glauca 'Conica'"
-    },
-    {
-      "id": 11,
-      "img": "https://perenual.com/storage/species_image/11_acer_davidii/regular/6868591754_f4ac5b0510_b.jpg",
-      "name": "Eastern White Pine",
-      "price": 18.99,
-      "quantity": 18,
-      "sname": "Pinus strobus"
-    },
-    {
-      "id": 12,
-      "img": "https://perenual.com/storage/species_image/12_acer_ginnala/regular/10476032513_76ca899bc4_b.jpg",
-      "name": "Jack Pine",
-      "price": 17.99,
-      "quantity": 20,
-      "sname": "Pinus banksiana"
-    },
-    {
-      "id": 13,
-      "img": "https://perenual.com/storage/species_image/13_acer_ginnala_flame/regular/pexels-photo-1649190.jpg",
-      "name": "Limber Pine",
-      "price": 29.99,
-      "quantity": 7,
-      "sname": "Pinus flexilis"
-    },
-    {
-      "id": 14,
-      "img": "https://perenual.com/storage/species_image/14_acer_ginnala_mondy/regular/pexels-photo-1789879.jpg",
-      "name": "Ponderosa Pine",
-      "price": 21.99,
-      "quantity": 10,
-      "sname": "Pinus ponderosa"
-    }
-    ];
+let data = []
+let selectedItem = ''
+let dataTable = null
 
-    $('#myTable').DataTable({
-      data: data,
-      columns: [
-        { data: 'id' },
-        { data: 'img', render: function(data) {
-            return '<img src="' + data + '" width="100" height="100">';
-          }
-        },{ data: 'sname' },
-        { data: 'name' },
-        { data: 'price' },
-        { data: 'quantity' },
-      ]
-    });
-  });
+function loadTable() {
+  fetch('/api/products')
+    .then((response) => response.json())
+    .then((items) => {
+      data = items;
+
+      if (dataTable !== null) {
+        dataTable.destroy();
+      }
+
+      dataTable = $('#myTable').DataTable({
+        data: data,
+        columns: [
+          { data: 'id' },
+          {
+            data: 'img', render: function (data) {
+              return '<img src="' + data + '" width="100" height="100">';
+            }
+          }, { data: 'sname' },
+          { data: 'name' },
+          { data: 'price' },
+          { data: 'quantity' },
+        ]
+      });
+    })
+    .catch((error) => console.error(error));
+}
+
+$(document).ready(function () {
+  loadTable();
+});
+
+function refreshTable() {
+  loadTable();
+}
 
 
 table = document.querySelector('.display tbody');
 nameform = document.querySelector('.nameinp');
-snameform = document.querySelector('.snameinp');
+snameform = document.querySelector('.scinameinp');
 priceform = document.querySelector('.priceinp');
 quantform = document.querySelector('.quantityinp');
+imgform = document.querySelector('.imginp');
 table.addEventListener("click", dispitem);
-nameform.value = "";
-snameform.value = "";
-priceform.value = "";
-quantform.value = "";
 
-function dispitem(i){
-    rows = table.outerText.split('\n');
-    attributes = rows[0].split('\t');
+addBtn = document.querySelector('.addbtn');
+deleteBtn = document.querySelector('.delbtn');
+updateBtn = document.querySelector('.updatebtn');
 
-    const cell = i.target.closest('td');
-    if (!cell){
-        return;
+function dispitem(i) {
+  rows = table.outerText.split('\n');
+  attributes = rows[0].split('\t');
+
+  const cell = i.target.closest('td');
+  if (!cell) {
+    return;
+  }
+  const row = cell.parentElement;
+  items = rows[row.rowIndex - 1].split('\t')
+  id = items[0]
+
+  for (item of data) {
+    if (item.id === Number(id)) {
+      selectedItem = item;
+      imgform.value = item.img
+      nameform.value = item.name
+      snameform.value = item.sname
+      priceform.value = item.price
+      quantform.value = item.quantity
     }
-    const row = cell.parentElement;
-    items = rows[row.rowIndex-1].split('\t')
-    console.log(rows[row.rowIndex-1].split('\t'));
-
-    nameform.value = items[2];
-    snameform.value = items[3];
-    priceform.value = items[4];
-    quantform.value = items[5];
+  }
 }
+
+const addItem = () => {
+  let isDuplicate = false;
+
+  for (const item of data) {
+    if (imgform.value === item.img || nameform.value === item.name || snameform.value === item.sname) {
+      isDuplicate = true;
+      break;
+    }
+  }
+
+  if (isDuplicate) {
+    alert("Item Already in database. Please check inputs!");
+    return;
+  }
+
+  const newItem = {
+    img: imgform.value,
+    name: nameform.value,
+    sname: snameform.value,
+    price: priceform.value,
+    quantity: quantform.value
+  };
+  fetch('/admin/store/newproduct', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newItem)
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      alert(data);
+    });
+    refreshTable()
+};
+
+const deleteItem = () => {
+  fetch(`/admin/store/${selectedItem.id}`, {
+    method: 'DELETE',
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      alert(data);
+    });
+    refreshTable()
+}
+
+const updateItem = () => {
+  const item = {
+    img: imgform.value,
+    name: nameform.value,
+    sname: snameform.value,
+    price: priceform.value,
+    quantity: quantform.value
+  };
+  fetch(`/admin/store/${selectedItem.id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(item)
+  })
+    .then((response) => response.text())
+    .then((data) => {
+      alert(data);
+    });
+    refreshTable()
+}
+addBtn.addEventListener("click", addItem);
+deleteBtn.addEventListener("click", deleteItem);
+updateBtn.addEventListener("click", updateItem);

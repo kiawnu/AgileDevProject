@@ -17,7 +17,7 @@ with app.app_context():
     db.session.commit()
 
 data = []
-with open("store.csv", "r") as fp:
+with open("app/store.csv", "r") as fp:
         reader = csv.DictReader(fp)
         for line in reader:
             data.append(line)
@@ -28,3 +28,17 @@ with app.app_context():
         db.session.add(item)
         print('*', end=' ')
     db.session.commit()
+    
+# with app.app_context():
+#     order = {
+#     "products": [
+#         {
+#             "p_id": 2,
+#             "quantity": 3
+#         },
+#         {
+#             "p_id": 1,
+#             "quantity": 3
+#     }
+#     ]
+# }

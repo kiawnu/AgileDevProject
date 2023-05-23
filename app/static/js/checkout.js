@@ -109,7 +109,7 @@ function updateSubTotal() {
     const price = parseFloat(item.price.substring(4));
     return total + price * item.quantity;
   }, 0);
-  
+
   const taxPercentage = 5; // Assuming 5% GST
   const tax = (subtotal * taxPercentage) / 100;
   const total = subtotal + tax;
@@ -130,3 +130,54 @@ function updateSubTotal() {
 renderCheckoutItems();
 updateSubTotalQuantity();
 updateSubTotal();
+
+const saveCartButton = document.querySelector('.savecart-button')
+const checkOutButton = document.querySelector('.checkout-button')
+
+const cartAPI = () => {
+  let data = { products: [] }
+  for (item of cartItems) {
+    let dataObj = {}
+    dataObj.p_id = item.p_id
+    dataObj.quantity = item.quantity
+    data.products.push(dataObj)
+  }
+  alert("Cart Updated!")
+  fetch(`/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then((response) => response.text())
+    .then((data) => {
+      alert(data);
+    });
+}
+saveCartButton.addEventListener('click', cartAPI);
+
+
+const checkOut = () => {
+  fetch(`/orders/process`)
+    .then((response) => {
+      if (response.ok) {
+        // Successful response
+        return response.text();
+      } else {
+        // Error response
+        throw new Error(response.text());
+      }
+    })
+    .then((data) => {
+      alert(data);
+      localStorage.clear();
+      location.reload();
+    })
+    .catch((error) => {
+      alert('Please save your cart before checking out');
+    });
+};
+
+checkOutButton.addEventListener('click', checkOut);
+
+

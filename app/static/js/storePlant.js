@@ -1,7 +1,7 @@
 const currentUrl = window.location.href;
 const urlParts = currentUrl.split('/');
 const id = urlParts.pop();
-const url = `/api/store/${id}`;
+const url = `/api/product/${id}`;
 
 const plantName = document.getElementById('store-plant-name');
 const sname = document.getElementById('store-plant-sname');
@@ -49,6 +49,7 @@ addToCartButton.addEventListener('click', function () {
   } else {
     // Plant doesn't exist in the cart, create a new item
     const newItem = {
+      p_id: id,
       plantName: plantName.textContent,
       sname: sname.textContent,
       img: plantImg.src,
