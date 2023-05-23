@@ -78,12 +78,16 @@ nav li {
 }
 
 footer {
-  border-top: 5px black solid;
-  background-color: #5f8d4e;
+  position: fixed;
+  left: 0;
+  right: 0;
   bottom: 0;
+  border-top: 5px solid black;
+  background-color: #5f8d4e;
   text-align: center;
   font-family: fantasy;
 }
+
 
 footer p {
   margin: 0;
@@ -217,6 +221,7 @@ td input {
     width: 20%;
 }
 
+info
 table {
     border-collapse: collapse;
 }
@@ -253,7 +258,7 @@ thead {
     font-size: 18px;
 }
 
-.delete-button:hover, {
+.delete-button:hover {
     background-color: #94291C;
     box-shadow: 0 0 5px 2px #0000004d;
   }
@@ -416,10 +421,14 @@ li {
   list-style: none;
 }
 
-img {
+/* img {
   width: 100%;
   height: auto;
-}
+} */
+
+/* #infoPlant_table tr td img{
+  width:0;
+} */
 
 #store-plant-shopCart-img {
     width:20px;
