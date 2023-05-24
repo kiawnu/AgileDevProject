@@ -70,7 +70,7 @@ p{
     height: fit-content;
 }
 .share{
-    background-color: #5f8d4e;
+    background-color: #4CACBC;
     padding: 5px 10px;
     border: none;
     border-radius: 3px;
@@ -108,7 +108,7 @@ table{
     margin-bottom: 5px;
 }
 .inStore{
-    background-color: #5f8d4e;
+    background-color: #FC7300;
     border: none;
     border-radius: 3px;
     padding: 5px 10px;
