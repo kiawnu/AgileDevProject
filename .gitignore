@@ -3,5 +3,6 @@ app/venv
 app/database/__pycache__
 app/__pycache__
 venv
+database.db
 database/__pycache__
 __pycache__
