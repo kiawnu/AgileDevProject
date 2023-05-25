@@ -166,6 +166,8 @@ def create_product():
             err_list.append("price must be numeric")
         if type(data["quantity"]) != type(0):
             err_list.append("quantity must be an integer")
+        if Product.query.filter_by(name=data["name"]).first() == data["name"]:
+            raise AttributeError
 
         if len(err_list) > 0:
             for item in err_list:
