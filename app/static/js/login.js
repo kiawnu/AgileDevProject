@@ -31,6 +31,9 @@ const login = () => {
         .then(data => console.log(data))
         .catch(error => console.error(error));
 };
+const getLocalStorage = () => {
+    
+}
 
 loginButton.addEventListener('click', login);
 
