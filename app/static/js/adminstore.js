@@ -108,7 +108,7 @@ const addItem = () => {
     .then((data) => {
       alert(data);
     });
-    refreshTable()
+    window.location.href = '/admin/store'
 };
 
 const deleteItem = () => {
@@ -119,7 +119,7 @@ const deleteItem = () => {
     .then((data) => {
       alert(data);
     });
-    refreshTable()
+    window.location.href = '/admin/store'
 }
 
 const updateItem = () => {
@@ -141,7 +141,7 @@ const updateItem = () => {
     .then((data) => {
       alert(data);
     });
-    refreshTable()
+    window.location.href = '/admin/store'
 }
 addBtn.addEventListener("click", addItem);
 deleteBtn.addEventListener("click", deleteItem);
