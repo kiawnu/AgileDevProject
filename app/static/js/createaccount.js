@@ -9,6 +9,7 @@ const routeToCreateAccount = () => {
   dataObj.username = username.value
   dataObj.password = password.value
   console.log(dataObj)
+  localStorage.clear();
 };
 fetch('/createaccount', {
   method: 'POST',

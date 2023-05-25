@@ -14,6 +14,7 @@ const login = () => {
     let dataObj = { username: '', password: '' }
     dataObj.username = username.value
     dataObj.password = password.value
+    localStorage.clear();
     console.log(dataObj)
     fetch('/login', {
         method: 'POST',
