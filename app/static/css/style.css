@@ -69,6 +69,9 @@ footer {
     padding:22px;
     position: fixed;
     width: 100%;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
 }
   
 footer p {
@@ -96,4 +99,16 @@ a {
     text-decoration: none;
     color: inherit;
     font-family: Kanit, fantasy;
+}
+
+footer{
+    padding:0px;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+  }
+  
+footer img{
+    width:25px;
+    height:25px;
 }

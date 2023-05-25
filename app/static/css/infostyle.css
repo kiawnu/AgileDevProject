@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-size: larger;
+    background-color: #e5d9b6;
 }
 h1{
     font-family: fantasy;
@@ -52,7 +52,7 @@ section{
 
 }
 p{
-    margin: 5px 0px 0px 20px;
+    margin: 0px;
 }
 
 
@@ -70,11 +70,11 @@ p{
     height: fit-content;
 }
 .share{
-    background-color: #4CACBC;
+    background-color: #5f8d4e;
     padding: 5px 10px;
     border: none;
     border-radius: 3px;
-    font-size: larger;
+    font-size: 18px;
 }
 
 
@@ -86,15 +86,15 @@ p{
     height: min-content;
 }
 table{
-    background-color: #a7bcb9;
+    background-color: #5f8d4e;
     border-style: none;
-    border-spacing: 30px 15px;
+    border-spacing: 6px;
     text-align: left;
     width: 90%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
     table-layout: fixed;
-    font-size: larger;
+    font-size: 24px;
 }
 #plantName{
     font-family: fantasy;
@@ -104,21 +104,16 @@ table{
 #plantSpecies{
     font-family: 'Indie Flower', cursive;
     color: #686ee2;
-    font-size: larger;
-    margin-bottom: 20px;
+    font-size: small;
+    margin-bottom: 5px;
 }
 .inStore{
-    background-color: #FC7300;
+    background-color: #5f8d4e;
     border: none;
     border-radius: 3px;
     padding: 5px 10px;
 }
-.cart{
-    background-color: #BFDB38;
-    border: none;
-    border-radius: 3px;
-    padding: 5px 10px;
-}
+
 
 
 /* Factors section */
@@ -129,7 +124,8 @@ table{
     border-radius: 10px;
     border: solid 1px darkgrey;
     padding: 10px;
-    font-size: larger;
+    background-color: #a4be7be0;
+
 }
 .sun{
     margin: 10px;
@@ -138,7 +134,7 @@ table{
     border-radius: 10px;
     border: solid 1px darkgrey;
     padding: 10px;
-    font-size: larger;
+    background-color: #a4be7be0;
 }
 .pruning{
     margin: 10px;
@@ -147,13 +143,72 @@ table{
     border-radius: 10px;
     border: solid 1px darkgrey;
     padding: 10px;
-    font-size: larger;
+    background-color: #a4be7be0;
 }
 h3{
     font-size: large;
     font-weight: bold;
 }
 
+b {
+    font-weight: inherit;
+}
+
 button{
     font-size: large;
 }
+
+/* page color */
+header {
+    border-top: 5px black solid;
+    background-color: #5f8d4e;
+    font-weight: lighter;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    margin-top: 10px;
+  }
+
+  .header-ul {
+    font-family: fantasy;
+    font-weight: 1;
+    justify-content: space-between;
+    list-style: none;
+    display: flex;
+  }
+
+  nav li {
+    margin: 0 1rem;
+  }
+  
+  footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 5px solid black;
+    background-color: #5f8d4e;
+    text-align: center;
+    font-family: fantasy;
+  }
+  
+  footer p {
+    margin: 0;
+  }
+
+  main {
+    background-color: #a4be7be0;
+    padding: 10px;
+  }
+
+  footer{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+  }
+  
+  footer img{
+    width:25px;
+    height:25px;
+  }

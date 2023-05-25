@@ -60,10 +60,6 @@ def create_account():
                 err_desc = "'username' must be a string."
                 raise AttributeError
 
-            if User.query.filter_by(username=data["username"]):
-                err_desc = "'username' must be unique."
-                raise AttributeError
-
             if type(data["password"]) != type("e"):
                 err_desc = "'password' must be a string."
                 raise AttributeError
@@ -102,6 +98,7 @@ def infoID(id) -> str:
 
 
 @app.route("/checkout")
+@login_required
 def checkout() -> str:
     return render_template("checkout.html")
 
@@ -202,15 +199,17 @@ def create_product():
         200
     )
 
+
 @app.route("/orders/process", methods=["GET"])
 @login_required
 def process_order():
     try:
         order = Order.query.filter_by(user_id=current_user.id).first()
         order_line = OrderLine.query.filter_by(order_id=order.id).all()
-        
+
         for product in order_line:
-            product_obj = db.session.get(OrderLine, (product.product_id, order.id))
+            product_obj = db.session.get(
+                OrderLine, (product.product_id, order.id))
             plant = db.session.get(Product, product.product_id)
             if (plant.quantity - product_obj.quantity) < 0:
                 product_obj.quantity = plant.quantity
@@ -220,8 +219,9 @@ def process_order():
 
             db.session.delete(product_obj)
             db.session.commit()
-            
-        db.session.query(OrderLine).filter(OrderLine.order.has(Order.user_id == current_user.id)).delete() 
+
+        db.session.query(OrderLine).filter(OrderLine.order.has(
+            Order.user_id == current_user.id)).delete()
         db.session.delete(order)
         db.session.commit()
         return 'Order Processed', 200
@@ -246,6 +246,10 @@ def update_product(product_id):
 
             if type(data["name"]) != type("e") and type(data["name"]) != type(None):
                 err_list.append("name must be string")
+            if type(data["sname"]) != type("e") and type(data["sname"]) != type(None):
+                err_list.append("sname must be string")
+            if type(data["img"]) != type("e") and type(data["img"]) != type(None):
+                err_list.append("img must be string")
             if type(data["price"]) != type(0) and type(data["price"]) != type(None) and type(data["price"]) != type(0.0):
                 err_list.append("price must be numeric")
             if type(data["quantity"]) != type(0) and type(data["quantity"]) != type(None):
@@ -268,6 +272,10 @@ def update_product(product_id):
         # checks update values
         if data.get("name") == None:
             data.update({"name": old_prod.name})
+        if data.get("sname") == None:
+            data.update({"sname": old_prod.name})
+        if data.get("img") == None:
+            data.update({"img": old_prod.name})
         if data.get("price") == None:
             data.update({"price": old_prod.price})
         if data.get("quantity") == None:
@@ -276,6 +284,8 @@ def update_product(product_id):
         new_prod = Product(
             id=product_id,
             name=data.get("name"),
+            sname=data.get("sname"),
+            img=data.get("img"),
             price=round(float(data.get("price")), 2),
             quantity=data.get("quantity")
         )
@@ -403,7 +413,8 @@ def create_order():
         message = "Order Created"
         if current_user.orders:
             order = Order.query.filter_by(user_id=current_user.id).first()
-            db.session.query(OrderLine).filter(OrderLine.order.has(Order.user_id == current_user.id)).delete() 
+            db.session.query(OrderLine).filter(OrderLine.order.has(
+                Order.user_id == current_user.id)).delete()
             message = "Order Updated"
         else:
             order = Order(user_id=current_user.id)
@@ -418,7 +429,7 @@ def create_order():
             )
             db.session.add(line)
             db.session.commit()
-            
+
         return (
             f"{message}",
             200
