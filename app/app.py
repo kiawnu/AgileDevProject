@@ -86,6 +86,12 @@ def create_account():
             400
         )
 
+@app.route("/loginstatus", methods=["GET"])
+def retrieve_login_status():
+    if current_user != None:
+        return f"User #{current_user.id} logged in.", 200
+    return "No user logged in.", 400
+        
 
 @app.route("/info")
 def info() -> str:
@@ -376,7 +382,7 @@ def get_products() -> str:
 @login_required
 def retrieve_orders():
     orders = current_user.orders
-    return jsonify([o.to_json() for o in orders])
+    return jsonify([o.to_json() for o in orders][0])
 
 
 @app.route("/orders/<int:order_id>", methods=["GET"])
@@ -584,6 +590,7 @@ def append_product(order_id):
             f"{err_desc}.",
             400
         )
+
 
 
 @app.route("/store/<int:id>")
