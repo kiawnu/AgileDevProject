@@ -12,6 +12,7 @@ const updateLocalStorage = () => {
                         cartItems.push(product);
                     }
                     localStorage.cartItems = JSON.stringify(cartItems);
+                    localStorage.orderID = JSON.stringify(order["id"])
                 })
             })
         }

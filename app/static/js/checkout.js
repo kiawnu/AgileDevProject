@@ -18,6 +18,7 @@ function updateQuantity(index, quantity) {
 
 // Function to remove an item from the shopping cart
 function removeItem(index) {
+  fetch(`/orders/${JSON.parse(localStorage.orderID)}/${JSON.parse(localStorage.cartItems)[index].p_id}`, {method: 'DELETE'});
   cartItems.splice(index, 1);
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
   renderCheckoutItems();
