@@ -40,7 +40,8 @@ class Order(db.Model):
         product_list = []
         price_list = []
         for product in self.products:
-            product_list.append({"name":db.session.get(Product, product.product_id).name, "quantity":product.quantity})
+            p = db.session.get(Product, product.product_id)
+            product_list.append({"img":p.img, "p_id":p.id, "plantName":p.name, "price":f"CA$ {p.price}", "quantity":product.quantity, "sname":p.sname})
             price_list.append(db.session.get(Product, product.product_id).price * product.quantity)
         
         return {
